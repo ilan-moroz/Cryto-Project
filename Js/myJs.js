@@ -13,3 +13,21 @@ $(function () {
 $(function () {
   $('.coins').on('click', '.moreInfo', getCoinsInfo)
 })
+
+// LOADING SPINNER ON PAGE LOAD
+$(document).ready(function () {
+  $(document).mousemove(function (event) {
+    $('#spinner').css({
+      left: event.pageX,
+      top: event.pageY,
+    })
+  })
+
+  $(document).ajaxStart(function () {
+    $('#spinner').show()
+  })
+
+  $(document).ajaxStop(function () {
+    $('#spinner').hide()
+  })
+})

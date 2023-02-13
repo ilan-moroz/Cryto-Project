@@ -59,7 +59,13 @@ header {
   height: 12rem;
 }
 
-/* .collapse .card {
-  background-color: black;
-  border: 1px solid #ffc107;
-} */
+/* LOADING SPINNER */
+#spinner {
+  display: none;
+  position: absolute;
+  z-index: 9999;
+}
+
+.spin {
+  width: 40%;
+}
