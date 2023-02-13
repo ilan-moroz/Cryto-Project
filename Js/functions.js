@@ -34,15 +34,16 @@ function getCoinsDisplay() {
 
 // FUNCTION filterCoins FOR DISPLAYING THE COINS USER SEARCHES
 function filterCoins() {
+  let searchTerm = $('.search').val().toLowerCase()
+  if (!searchTerm) {
+    $('.card').show()
+    return
+  }
   for (let index = 0; index < displayCoins.length; index++) {
     let card = $(`.card:eq(${index})`)
     if (
-      !displayCoins[index].name
-        .toLowerCase()
-        .includes($('.search').val().toLowerCase()) &&
-      !displayCoins[index].symbol
-        .toLowerCase()
-        .includes($('.search').val().toLowerCase())
+      displayCoins[index].name.toLowerCase() !== searchTerm &&
+      displayCoins[index].symbol.toLowerCase() !== searchTerm
     ) {
       card.hide()
     } else {
