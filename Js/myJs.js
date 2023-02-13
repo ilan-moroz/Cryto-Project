@@ -36,3 +36,8 @@ $(function () {
     $('#spinner').hide()
   })
 })
+
+// PREVENT FORM FROM SUBMIT
+$('.form').submit(function (event) {
+  event.preventDefault()
+})
