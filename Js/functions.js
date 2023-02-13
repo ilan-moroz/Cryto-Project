@@ -7,33 +7,45 @@ let displayCoins = []
 
 //FUNCTION getCoinsDisplay GETS 100 RANDOM COINS FROM THE API AND APPEND TO THE HTML
 async function getCoinsDisplay() {
-  try {
-    let data = await $.get(cryptoCoins)
-    for (let i = 0; i < 100; i++) {
-      let random = Math.floor(Math.random() * data.length) + 1
-      displayCoins.push(data[random])
+  return new Promise((resolve, reject) => {
+    $.get(cryptoCoins)
+      .done((data) => {
+        for (let i = 0; i < 100; i++) {
+          let random = Math.floor(Math.random() * data.length) + 1
+          displayCoins.push(data[random])
+        }
+        resolve(displayCoins)
+      })
+      .fail((error) => {
+        reject(error)
+      })
+  })
+}
+getCoinsDisplay()
+  .then((displayCoins) => {
+    for (let i = 0; i < displayCoins.length; i++) {
       $('.coins').append(`
-          <div class="card border-warning text-warning bg-transparent ">
-            <div class="card-header border-warning d-flex justify-content-between">
-              ${displayCoins[i].symbol}
-              <div class="form-check form-switch d-inline-block m-1 p-0">
-             <input class="form-check-input" type="checkbox">
-              </div>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">${displayCoins[i].name}</h5>
-            </div>
-            <div class="card-footer bg-transparent">
-              <button type="button" class="btn btn-warning moreInfo data-bs-toggle="collapse"
-              data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">More Info</button>
+        <div class="card border-warning text-warning bg-transparent ">
+          <div class="card-header border-warning d-flex justify-content-between">
+            ${displayCoins[i].symbol}
+            <div class="form-check form-switch d-inline-block m-1 p-0">
+           <input class="form-check-input" type="checkbox">
             </div>
           </div>
-        `)
+          <div class="card-body">
+            <h5 class="card-title">${displayCoins[i].name}</h5>
+          </div>
+          <div class="card-footer bg-transparent">
+            <button type="button" class="btn btn-warning moreInfo data-bs-toggle="collapse"
+            data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">More Info</button>
+          </div>
+        </div>
+      `)
     }
-  } catch (error) {
+  })
+  .catch((error) => {
     console.error(error)
-  }
-}
+  })
 
 // FUNCTION filterCoins FOR DISPLAYING THE COINS USER SEARCHES
 function filterCoins() {
