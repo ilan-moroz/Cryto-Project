@@ -69,3 +69,8 @@ header {
 .spin {
   width: 40%;
 }
+
+/* CHECKBOX */
+input[type="checkbox"] {
+  cursor: pointer;
+}
