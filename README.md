@@ -1,4 +1,4 @@
-#CRYPTO PROJECT
+# CRYPTO PROJECT
 
 ## Table of contents
 * [General info](#general-info)
