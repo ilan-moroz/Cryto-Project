@@ -15,7 +15,7 @@ $(function () {
 })
 
 // LOADING SPINNER ON PAGE LOAD
-$(document).ready(function () {
+$(function () {
   $(document).mousemove(function (event) {
     $('#spinner').css({
       left: event.pageX,
