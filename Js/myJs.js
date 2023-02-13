@@ -6,7 +6,11 @@ $(function () {
 
 // ON INPUT && ON CLICK EVENTS THAT TRIGGER filterCoins FUNCTION FOR USER SEARCH
 $(function () {
-  $('.search').on('input', filterCoins)
+  $('.search').on('keydown', function (event) {
+    if (event.keyCode === 13) {
+      filterCoins()
+    }
+  })
   $('.btn').on('click', filterCoins)
 })
 
