@@ -10,11 +10,12 @@ $(function () {
   $('.btn').on('click', filterCoins)
 })
 
+// ON CLICK EVENT FOR getCoinsInfo
 $(function () {
   $('.coins').on('click', '.moreInfo', getCoinsInfo)
 })
 
-// LOADING SPINNER ON PAGE LOAD
+// LOADING SPINNER
 $(function () {
   $(document).mousemove(function (event) {
     $('#spinner').css({
