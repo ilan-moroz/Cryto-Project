@@ -95,9 +95,9 @@ function coinsInfo(data) {
   $('html').append(`
     <img src="${data.image.small}"/>
     <h5>${data.name}</h5>
-    USD: 1 ${data.name} = ${Number(data.market_data.current_price.usd)}$
-    EURO: 1 ${data.name} = ${Number(data.market_data.current_price.eur)}€
-    ILS: 1 ${data.name} = ${Number(data.market_data.current_price.ils)}₪
+    USD: 1 ${data.name} = ${Number(data.market_data.current_price.usd)} $
+    EURO: 1 ${data.name} = ${Number(data.market_data.current_price.eur)} €
+    ILS: 1 ${data.name} = ${Number(data.market_data.current_price.ils)} ₪
     `)
 }
 
