@@ -5,7 +5,7 @@ const cryptoInfo = 'https://api.coingecko.com/api/v3/coins/'
 // EMPTY ARRAY FOR THE DISPLAYED COINS
 let displayCoins = []
 
-//FUNCTION getCoinsDisplay GETS 100 RANDOM COINS FROM THE API AND APPEND TO THE HTML
+//ASYNC FUNCTION getCoinsDisplay RETURNS PROMISE AND GETS 100 RANDOM COINS FROM THE API THEN APPEND TO THE HTML
 async function getCoinsDisplay() {
   return new Promise((resolve, reject) => {
     $.get(cryptoCoins)
