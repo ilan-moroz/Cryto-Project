@@ -6,8 +6,9 @@ const cryptoInfo = 'https://api.coingecko.com/api/v3/coins/'
 let displayCoins = []
 
 //FUNCTION getCoinsDisplay GETS 100 RANDOM COINS FROM THE API AND APPEND TO THE HTML
-function getCoinsDisplay() {
-  $.get(cryptoCoins, (data) => {
+async function getCoinsDisplay() {
+  try {
+    let data = await $.get(cryptoCoins)
     for (let i = 0; i < 100; i++) {
       let random = Math.floor(Math.random() * data.length) + 1
       displayCoins.push(data[random])
@@ -29,7 +30,9 @@ function getCoinsDisplay() {
           </div>
         `)
     }
-  })
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 // FUNCTION filterCoins FOR DISPLAYING THE COINS USER SEARCHES
