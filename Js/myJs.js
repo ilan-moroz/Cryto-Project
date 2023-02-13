@@ -1,43 +1,37 @@
-// RUN FUNCTION getCoinsDisplay && parallax ON PAGE LOAD
 $(function () {
+  // RUN FUNCTION getCoinsDisplay ON PAGE LOAD
   getCoinsDisplay()
-  parallax()
-})
 
-// ON INPUT && ON CLICK EVENTS THAT TRIGGER filterCoins FUNCTION FOR USER SEARCH
-$(function () {
+  // RUN FUNCTION parallax ON PAGE LOAD
+  parallax()
+
+  // ON INPUT && ON CLICK EVENTS THAT TRIGGER filterCoins FUNCTION FOR USER SEARCH
   $('.search').on('keydown', function (event) {
     if (event.keyCode === 13) {
       filterCoins()
     }
   })
   $('.btn').on('click', filterCoins)
-})
 
-// ON CLICK EVENT FOR getCoinsInfo
-$(function () {
+  // ON CLICK EVENT FOR getCoinsInfo FUNCTION
   $('.coins').on('click', '.moreInfo', getCoinsInfo)
-})
 
-// LOADING SPINNER
-$(function () {
+  // LOADING SPINNER
   $(document).mousemove(function (event) {
     $('#spinner').css({
       left: event.pageX,
       top: event.pageY,
     })
   })
-
   $(document).ajaxStart(function () {
     $('#spinner').show()
   })
-
   $(document).ajaxStop(function () {
     $('#spinner').hide()
   })
-})
 
-// PREVENT FORM FROM SUBMIT
-$('.form').submit(function (event) {
-  event.preventDefault()
+  // PREVENT FORM FROM SUBMIT
+  $('.form').submit(function (event) {
+    event.preventDefault()
+  })
 })
