@@ -34,4 +34,11 @@ $(function () {
   $('.form').submit(function (event) {
     event.preventDefault()
   })
+
+  //SHOW ALL COINS ON NAVBAR COINS CLICK
+  $('ul li a')
+    .first()
+    .on('click', function () {
+      $('.card').show()
+    })
 })
