@@ -59,6 +59,10 @@ header {
   height: 12rem;
 }
 
+.card:hover {
+  box-shadow: 0 4px 10px rgb(255, 193, 7), 0 4px 10px rgb(255, 193, 7);
+}
+
 /* LOADING SPINNER */
 #spinner {
   display: none;

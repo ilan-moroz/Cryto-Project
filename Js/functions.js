@@ -31,7 +31,7 @@ getCoinsDisplay()
           <div class="card-header border-warning d-flex justify-content-between">
             ${displayCoins[i].symbol}
             <div class="form-check form-switch d-inline-block m-1 p-0">
-           <input class="form-check-input" type="checkbox">
+           <input class="form-check-input" type="checkbox"/>
             </div>
           </div>
           <div class="card-body">
