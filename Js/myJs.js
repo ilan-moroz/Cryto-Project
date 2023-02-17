@@ -46,6 +46,39 @@ $(function () {
     $(`#${targetId}`).html(coinDetailsHtml)
   })
 
+  // function getCoinDetailsFromClick() {
+  //   let coinIndex = $(this.target).closest('.card').index()
+  //   let coinSymbol = displayCoins[coinIndex].symbol.toLowerCase()
+  //   let coinName = getFormattedCoinName(
+  //     displayCoins[coinIndex].name
+  //       .toLowerCase()
+  //       .split(' ')
+  //       .join('-')
+  //       .split('.')
+  //       .join('-')
+  //       .split('[')[0]
+  //       .split('(')[0],
+  //   )
+  //   coinData(coinName, coinSymbol, coinIndex)
+  // }
+
+  // async function coinData(coinName, coinSymbol, coinIndex) {
+  //   let coinData = await fetchCoinsData(coinName, coinSymbol)
+  //   let coinDetailsHtml = `
+  //   <img class="collapseImg" src="${coinData.image.large}"/>
+  //   USD:<br/> 1 ${coinData.name} = ${Number(
+  //     coinData.market_data.current_price.usd,
+  //   )}$<br/>
+  //   EURO:<br/>  1 ${coinData.name} = ${Number(
+  //     coinData.market_data.current_price.eur,
+  //   )}€<br/>
+  //   ILS:<br/>  1 ${coinData.name} = ${Number(
+  //     coinData.market_data.current_price.ils,
+  //   )}₪`
+  //   let targetId = `coin-${coinIndex}-details`
+  //   $(`#${targetId}`).html(coinDetailsHtml)
+  // }
+
   // LOADING SPINNER
   $(document).mousemove(function (event) {
     $('#spinner').css({
