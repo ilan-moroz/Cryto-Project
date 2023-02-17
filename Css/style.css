@@ -48,6 +48,11 @@ header {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+input[type="search"],
+.btn-outline-warning {
+  margin-bottom: 1rem;
+}
+
 /* COIN CARDS */
 .coins {
   margin: 3rem;
