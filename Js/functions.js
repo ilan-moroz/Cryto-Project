@@ -6,35 +6,12 @@ const cryptoInfo = 'https://api.coingecko.com/api/v3/coins/'
 let displayCoins = []
 
 //ASYNC FUNCTION getCoinsDisplay RETURNS PROMISE AND GETS 100 RANDOM COINS FROM THE API THEN APPEND TO THE HTML
-async function getCoinsDisplay() {
-  $('#spinner').show()
+async function fetchCoins() {
   return new Promise((resolve, reject) => {
     $.ajax({
       url: cryptoCoins,
       success: function (data) {
-        for (let i = 0; i < 100; i++) {
-          let random = Math.floor(Math.random() * data.length) + 1
-          displayCoins.push(data[random])
-          $('.coins').append(`
-          <div class="card border-warning text-warning bg-transparent ">
-            <div class="card-header border-warning d-flex justify-content-between">
-              ${displayCoins[i].symbol}
-              <div class="form-check form-switch d-inline-block m-1 p-0">
-             <input class="form-check-input" type="checkbox"/>
-              </div>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">${displayCoins[i].name}</h5>
-            </div>
-            <div class="card-footer bg-transparent">
-              <button type="button" class="btn btn-warning moreInfo data-bs-toggle="collapse"
-              data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">More Info</button>
-            </div>
-          </div>
-        `)
-        }
-        $('#spinner').hide()
-        resolve(displayCoins)
+        resolve(data)
       },
       error: function (error) {
         reject(error)
@@ -42,6 +19,74 @@ async function getCoinsDisplay() {
     })
   })
 }
+
+async function getCoinsDisplay() {
+  $('#spinner').show()
+  const data = await fetchCoins()
+  for (let i = 0; i < 100; i++) {
+    let random = Math.floor(Math.random() * data.length) + 1
+    displayCoins.push(data[random])
+    displayCoin(displayCoins[i])
+  }
+  $('#spinner').hide()
+  return displayCoins
+}
+
+function displayCoin(coin) {
+  $('.coins').append(`
+    <div class="card border-warning text-warning bg-transparent ">
+      <div class="card-header border-warning d-flex justify-content-between">
+        ${coin.symbol}
+        <div class="form-check form-switch d-inline-block m-1 p-0">
+          <input class="form-check-input" type="checkbox"/>
+        </div>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">${coin.name}</h5>
+      </div>
+      <div class="card-footer bg-transparent">
+        <button type="button" class="btn btn-warning moreInfo" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">More Info</button>
+      </div>
+    </div>
+  `)
+}
+
+// async function getCoinsDisplay() {
+//   $('#spinner').show()
+//   return new Promise((resolve, reject) => {
+//     $.ajax({
+//       url: cryptoCoins,
+//       success: function (data) {
+//         for (let i = 0; i < 100; i++) {
+//           let random = Math.floor(Math.random() * data.length) + 1
+//           displayCoins.push(data[random])
+//           $('.coins').append(`
+//           <div class="card border-warning text-warning bg-transparent ">
+//             <div class="card-header border-warning d-flex justify-content-between">
+//               ${displayCoins[i].symbol}
+//               <div class="form-check form-switch d-inline-block m-1 p-0">
+//              <input class="form-check-input" type="checkbox"/>
+//               </div>
+//             </div>
+//             <div class="card-body">
+//               <h5 class="card-title">${displayCoins[i].name}</h5>
+//             </div>
+//             <div class="card-footer bg-transparent">
+//               <button type="button" class="btn btn-warning moreInfo data-bs-toggle="collapse"
+//               data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">More Info</button>
+//             </div>
+//           </div>
+//         `)
+//         }
+//         $('#spinner').hide()
+//         resolve(displayCoins)
+//       },
+//       error: function (error) {
+//         reject(error)
+//       },
+//     })
+//   })
+// }
 
 // FUNCTION filterCoins FOR DISPLAYING THE COINS USER SEARCHES
 function filterCoins() {
