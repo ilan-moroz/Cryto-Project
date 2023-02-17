@@ -7,6 +7,8 @@ let displayCoins = []
 
 //ASYNC FUNCTION getCoinsDisplay RETURNS PROMISE AND GETS 100 RANDOM COINS FROM THE API THEN APPEND TO THE HTML
 async function getCoinsDisplay() {
+  $('#spinner').show() // Show the spinner
+
   return new Promise((resolve, reject) => {
     $.ajax({
       url: cryptoCoins,
@@ -15,6 +17,8 @@ async function getCoinsDisplay() {
           let random = Math.floor(Math.random() * data.length) + 1
           displayCoins.push(data[random])
         }
+        $('#spinner').hide() // Show the spinner
+
         resolve(displayCoins)
       },
       error: function (error) {
