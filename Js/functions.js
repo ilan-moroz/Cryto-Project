@@ -10,10 +10,10 @@ async function fetchCoins() {
   return new Promise((resolve, reject) => {
     $.ajax({
       url: cryptoCoins,
-      success: function (data) {
+      success: (data) => {
         resolve(data)
       },
-      error: function (error) {
+      error: (error) => {
         reject(error)
       },
     })
@@ -27,14 +27,15 @@ async function getCoinsDisplay() {
   for (let i = 0; i < 100; i++) {
     let random = Math.floor(Math.random() * data.length) + 1
     displayCoins.push(data[random])
-    displayCoin(displayCoins[i])
+    displayCoin(displayCoins[i], i)
   }
   $('#spinner').hide()
   return displayCoins
 }
 
 // FUNCTION displayCoin FOR APPENDING THE COINS WITH BOOTSTRAP CARD
-function displayCoin(coin) {
+function displayCoin(coin, index) {
+  let targetId = `coin-${index}-details`
   $('.coins').append(`
     <div class="card border-warning text-warning bg-transparent ">
       <div class="card-header border-warning d-flex justify-content-between">
@@ -47,7 +48,10 @@ function displayCoin(coin) {
         <h5 class="card-title">${coin.name}</h5>
       </div>
       <div class="card-footer bg-transparent">
-        <button type="button" class="btn btn-warning moreInfo" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">More Info</button>
+        <button type="button" class="btn btn-warning moreInfo" data-bs-toggle="collapse" 
+        data-bs-target="#${targetId}" aria-expanded="false" aria-controls="${targetId}">More Info</button>
+        <div class="collapse" id="${targetId}">
+        </div>
       </div>
     </div>
   `)
@@ -83,48 +87,32 @@ function parallax() {
   })
 }
 
-// FUNCTION getCoinsInfo GETS DATA ABOUT SPECIFIC COIN FROM API
-function getCoinsInfo() {
-  let coinSymbol = displayCoins[
-    $(this).closest('.card').index()
-  ].symbol.toLowerCase()
-  let coinName = displayCoins[$(this).closest('.card').index()].name
-    .toLowerCase()
-    .split(' ')
-    .join('-')
-    .split('.')
-    .join('-')
-    .split('[')[0]
-    .split('(')[0]
-  if (coinName[coinName.length - 1] === '-') {
-    coinName = coinName.slice(0, -1)
-  }
-  console.log(coinName)
-  $.ajax({
-    url: cryptoInfo + coinName,
-    success: (data) => {
-      coinsInfo(data)
-    },
-    error: () => {
-      $.get(cryptoInfo + coinSymbol, (data) => {
-        coinsInfo(data)
-      })
-    },
+// FUNCTION fetchCoinsData GETS THE COINS DATA FROM THA API
+async function fetchCoinsData(coinName, coinSymbol) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: cryptoInfo + coinName,
+      success: (data) => {
+        resolve(data)
+      },
+      error: () => {
+        $.get(cryptoInfo + coinSymbol, (data) => {
+          resolve(data)
+        }).catch((error) => {
+          reject('Sorry no information about this coin', error)
+        })
+      },
+    })
   })
 }
 
-function coinsInfo(data) {
-  $('html').append(`
-    <img src="${data.image.small}"/>
-    <h5>${data.name}</h5>
-    USD: 1 ${data.name} = ${Number(data.market_data.current_price.usd)} $
-    EURO: 1 ${data.name} = ${Number(data.market_data.current_price.eur)} €
-    ILS: 1 ${data.name} = ${Number(data.market_data.current_price.ils)} ₪
-    `)
-}
-
-/* <div class="collapse" id="collapseExample">
-  <div class="card card-body">
-    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-  </div>
-</div> */
+// TEMPORARY FUNCTION
+// function coinsInfo(data) {
+//   $('html').append(`
+//     <img src="${data.image.small}"/>
+//     <h5>${data.name}</h5>
+//     USD: 1 ${data.name} = ${Number(data.market_data.current_price.usd)} $
+//     EURO: 1 ${data.name} = ${Number(data.market_data.current_price.eur)} €
+//     ILS: 1 ${data.name} = ${Number(data.market_data.current_price.ils)} ₪
+//     `)
+// }

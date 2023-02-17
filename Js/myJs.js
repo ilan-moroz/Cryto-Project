@@ -16,7 +16,37 @@ $(function () {
   $('.btn').on('click', filterCoins)
 
   // ON CLICK EVENT FOR getCoinsInfo FUNCTION
-  $('.coins').on('click', '.moreInfo', getCoinsInfo)
+  $('.coins').on('click', '.moreInfo', async function () {
+    // GET coinSymbol AND coinName OF THE COINS THE USER CLICKED
+    let coinIndex = $(this).closest('.card').index()
+    let targetId = `coin-${coinIndex}-details`
+    let coinSymbol = displayCoins[coinIndex].symbol.toLowerCase()
+    let coinName = displayCoins[coinIndex].name
+      .toLowerCase()
+      .split(' ')
+      .join('-')
+      .split('.')
+      .join('-')
+      .split('[')[0]
+      .split('(')[0]
+    // RUN fetchCoinsData WITH coinSymbol AND coinName OF THE CLICKED COIN
+    let coinData = await fetchCoinsData(coinName, coinSymbol)
+    console.log(coinData)
+    // Create the HTML content for the coin details and append it to the collapse element
+    let coinDetailsHtml = `
+    <img src="${coinData.image.small}"/>
+    <h5>${coinData.name}</h5>
+    USD: 1 ${coinData.name} = ${Number(
+      coinData.market_data.current_price.usd,
+    )} $
+    EURO: 1 ${coinData.name} = ${Number(
+      coinData.market_data.current_price.eur,
+    )} €
+    ILS: 1 ${coinData.name} = ${Number(
+      coinData.market_data.current_price.ils,
+    )} ₪`
+    $(`#${targetId}`).html(coinDetailsHtml)
+  })
 
   // LOADING SPINNER
   $(document).mousemove(function (event) {
