@@ -31,20 +31,18 @@ $(function () {
       .split('(')[0]
     // RUN fetchCoinsData WITH coinSymbol AND coinName OF THE CLICKED COIN
     let coinData = await fetchCoinsData(coinName, coinSymbol)
-    console.log(coinData)
     // Create the HTML content for the coin details and append it to the collapse element
     let coinDetailsHtml = `
-    <img src="${coinData.image.small}"/>
-    <h5>${coinData.name}</h5>
-    USD: 1 ${coinData.name} = ${Number(
+    <img class="collapseImg" src="${coinData.image.large}"/>
+    USD:<br/> 1 ${coinData.name} = ${Number(
       coinData.market_data.current_price.usd,
-    )} $
-    EURO: 1 ${coinData.name} = ${Number(
+    )}$<br/>
+    EURO:<br/>  1 ${coinData.name} = ${Number(
       coinData.market_data.current_price.eur,
-    )} €
-    ILS: 1 ${coinData.name} = ${Number(
+    )}€<br/>
+    ILS:<br/>  1 ${coinData.name} = ${Number(
       coinData.market_data.current_price.ils,
-    )} ₪`
+    )}₪`
     $(`#${targetId}`).html(coinDetailsHtml)
   })
 

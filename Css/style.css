@@ -56,7 +56,7 @@ header {
 .card {
   margin: 1rem;
   width: 15rem;
-  height: 12rem;
+  height: 100%;
 }
 
 .card:hover {
@@ -77,4 +77,21 @@ header {
 /* CHECKBOX */
 input[type="checkbox"] {
   cursor: pointer;
+}
+
+/* COLLAPSE */
+.collapse {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: height 0.3s;
+}
+
+.collapse.show {
+  height: auto;
+}
+
+.collapseImg {
+  margin: auto;
+  width: 50%;
 }
