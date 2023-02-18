@@ -63,6 +63,9 @@ header {
   box-shadow: 0 4px 10px rgb(255, 193, 7), 0 4px 10px rgb(255, 193, 7);
 }
 
+.moreInfo:hover {
+}
+
 /* LOADING SPINNER */
 #spinner {
   display: none;
@@ -94,4 +97,8 @@ input[type="checkbox"] {
 .collapseImg {
   margin: auto;
   width: 50%;
+  border: 2px solid #ffc107;
+  background: white;
+  box-shadow: 0px 6px 5px #ffc107;
+  border-radius: 190px;
 }
