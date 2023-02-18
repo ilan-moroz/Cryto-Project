@@ -177,15 +177,15 @@ const checkBoxCont = () => {
 // FUNCTION modalCollapse ADDING OPTION TO CHANGE COINS IN MODAL
 const modalCollapse = () => {
   for (let i = 0; i < liveReportsArr.length; i++) {
-    const option = document.createElement('option')
-    option.value = liveReportsArr[i].name
-    option.textContent = liveReportsArr[i].name
+    const option = $('<option>')
+      .val(liveReportsArr[i].name)
+      .text(liveReportsArr[i].name)
     $('.replaceCoin').append(option)
   }
   for (let i = 0; i < displayCoins.length; i++) {
-    const option = document.createElement('option')
-    option.value = displayCoins[i].name
-    option.textContent = displayCoins[i].name
+    const option = $('<option>')
+      .val(displayCoins[i].name)
+      .text(displayCoins[i].name)
     $('.replaceCoinWith').append(option)
   }
 }
