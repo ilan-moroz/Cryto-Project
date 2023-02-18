@@ -176,16 +176,25 @@ const checkBoxCont = () => {
 
 // FUNCTION modalCollapse ADDING OPTION TO CHANGE COINS IN MODAL
 const modalCollapse = () => {
+  // REMOVE ALL OPTIONS INSTEAD OF FIRST
+  $('.replaceCoin option:not(:first-child)').remove()
+  //  MAKE FIRST OPTION SELECTED
+  $('.replaceCoin').val($('.replaceCoin option:first').val())
+  $('.replaceCoinWith').val($('.replaceCoinWith option:first').val())
+  // LOOP SELECTED COINS AND APPEND OPTIONS TO SELECT
   for (let i = 0; i < liveReportsArr.length; i++) {
     const option = $('<option>')
       .val(liveReportsArr[i].name)
       .text(liveReportsArr[i].name)
-    $('.replaceCoin').html(option)
+    $('.replaceCoin').append(option)
   }
-  for (let i = 0; i < displayCoins.length; i++) {
-    const option = $('<option>')
-      .val(displayCoins[i].name)
-      .text(displayCoins[i].name)
-    $('.replaceCoinWith').append(option)
+  // IF replaceCoinWith HAVE ONLY 1 OPTION LOOP THROW displayCoins ARRAY AND APPEND TO SELECT
+  if ($('.replaceCoinWith option').length === 1) {
+    for (let i = 0; i < displayCoins.length; i++) {
+      const option = $('<option>')
+        .val(displayCoins[i].name)
+        .text(displayCoins[i].name)
+      $('.replaceCoinWith').append(option)
+    }
   }
 }
