@@ -102,10 +102,6 @@ input[type="checkbox"] {
   transition: height 0.3s;
 }
 
-.collapse.show {
-  height: auto;
-}
-
 .collapseImg {
   margin: auto;
   width: 50%;

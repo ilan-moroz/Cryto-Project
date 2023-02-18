@@ -122,9 +122,19 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-warning" id="changeCoin">
+            <button
+              type="button"
+              class="btn btn-warning"
+              id="changeCoin"
+              data-bs-toggle="collapse"
+              data-bs-target="#coinsCollapse"
+              aria-expanded="false"
+              aria-controls="coinsCollapse"
+            >
               Change Coin
             </button>
+            <!-- COLLAPSE FOR CHANGE COIN -->
+            <div class="collapse collapseCoin" id="coinsCollapse"></div>
           </div>
         </div>
       </div>

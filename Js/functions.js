@@ -157,7 +157,7 @@ const checkBoxCheck = (event) => {
   checkBoxCont()
 }
 
-// FUNCTION checkBoxCont IF 5 O MORE CHECKBOX ARE SELECTED DISABLE ALL OTHERS
+// FUNCTION checkBoxCont DISABLE ALL UNSELECTED COINS AND INJECT TO MODAL
 const checkBoxCont = () => {
   let howMuch = $('.form-check-input').filter(':checked').length
   if (howMuch >= 5) {
