@@ -113,14 +113,7 @@ const fetchCoinsData = async (coinName, coinSymbol) => {
 const getCoinDetailsFromClick = (event) => {
   let coinIndex = $(event.target).closest('.card').index()
   let coinSymbol = displayCoins[coinIndex].symbol.toLowerCase()
-  let coinName = displayCoins[coinIndex].name
-    .toLowerCase()
-    .split(' ')
-    .join('-')
-    .split('.')
-    .join('-')
-    .split('[')[0]
-    .split('(')[0]
+  let coinName = displayCoins[coinIndex].name.toLowerCase()
   console.log(coinName)
   coinData(coinName, coinSymbol, coinIndex)
 }
