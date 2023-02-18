@@ -2,11 +2,12 @@
 const cryptoCoins = 'https://api.coingecko.com/api/v3/coins/list'
 const cryptoInfo = 'https://api.coingecko.com/api/v3/coins/'
 
-// EMPTY ARRAY FOR THE DISPLAYED COINS
+// EMPTY ARRAY FOR THE DISPLAYED COINS AND LIVE REPORTS
 let displayCoins = []
+let liveReportsArr = []
 
 // FUNCTION fetchCoins GETS THE COINS FROM THA API
-async function fetchCoins() {
+const fetchCoins = async () => {
   return new Promise((resolve, reject) => {
     $.get({
       url: cryptoCoins,
@@ -21,7 +22,7 @@ async function fetchCoins() {
 }
 
 // FUNCTION getCoinsDisplay GETS 100 RANDOM COINS FROM DATA AND RUNS displayCoin ON EACH COIN
-async function getCoinsDisplay() {
+const getCoinsDisplay = async () => {
   $('#spinner').show()
   const data = await fetchCoins()
   for (let i = 0; i < 100; i++) {
@@ -34,7 +35,7 @@ async function getCoinsDisplay() {
 }
 
 // FUNCTION displayCoin FOR APPENDING THE COINS WITH BOOTSTRAP CARD
-function displayCoin(coin, index) {
+const displayCoin = (coin, index) => {
   let targetId = `coin-${index}-details`
   $('.coins').append(`
     <div class="card border-warning text-warning bg-transparent ">
@@ -58,7 +59,7 @@ function displayCoin(coin, index) {
 }
 
 // FUNCTION filterCoins FOR DISPLAYING THE COINS USER SEARCHES
-function filterCoins() {
+const filterCoins = () => {
   let searchTerm = $('.search').val().toLowerCase()
   if (!searchTerm) {
     $('.card').show()
@@ -78,7 +79,7 @@ function filterCoins() {
 }
 
 // FUNCTION parallax FOR SCROLLING
-function parallax() {
+const parallax = () => {
   $(window).scroll(function () {
     let scroll = $(window).scrollTop()
     $('.parallax').css({
@@ -88,7 +89,7 @@ function parallax() {
 }
 
 // FUNCTION fetchCoinsData GETS THE COINS DATA FROM THA API
-async function fetchCoinsData(coinName, coinSymbol) {
+const fetchCoinsData = async (coinName, coinSymbol) => {
   return new Promise((resolve, reject) => {
     $.get({
       url: cryptoInfo + coinName,
@@ -107,7 +108,7 @@ async function fetchCoinsData(coinName, coinSymbol) {
 }
 
 // FUNCTION getCoinDetailsFromClick GET NAME,SYMBOL AND INDEX OF CLICKED COIN
-function getCoinDetailsFromClick(event) {
+const getCoinDetailsFromClick = (event) => {
   let coinIndex = $(event.target).closest('.card').index()
   let coinSymbol = displayCoins[coinIndex].symbol.toLowerCase()
   let coinName = displayCoins[coinIndex].name
@@ -123,7 +124,7 @@ function getCoinDetailsFromClick(event) {
 }
 
 // FUNCTION coinData GETS SPECIFIC COIN DATA FROM THE API AND APPEND TO COLLAPSE
-async function coinData(coinName, coinSymbol, coinIndex) {
+const coinData = async (coinName, coinSymbol, coinIndex) => {
   let coinData = await fetchCoinsData(coinName, coinSymbol)
   let targetId = `coin-${coinIndex}-details`
   $(`#${targetId}`).html(`
