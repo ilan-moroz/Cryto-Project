@@ -162,7 +162,14 @@ const checkBoxCont = () => {
   let howMuch = $('.form-check-input').filter(':checked').length
   if (howMuch >= 5) {
     $('.form-check-input').not(':checked').attr('disabled', true)
-    $('#exampleModal').modal('show')
+    $('.modal-body').html(`
+    1 Coin : ${liveReportsArr[0].name}</br>
+    2 Coin : ${liveReportsArr[1].name}</br>
+    3 Coin : ${liveReportsArr[2].name}</br>
+    4 Coin : ${liveReportsArr[3].name}</br>
+    5 Coin : ${liveReportsArr[4].name}
+    `)
+    $('#coinsModal').modal('show')
   } else {
     $('.form-check-input').not(':checked').attr('disabled', false)
   }

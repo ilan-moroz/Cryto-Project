@@ -67,7 +67,11 @@ header {
 .moreInfo {
   width: 100%;
 }
-.moreInfo:hover {
+
+/* HOVER FOR BUTTONS */
+.moreInfo:hover,
+#changeCoin:hover,
+#closeModal:hover {
   color: #ffc107;
   background: black;
   box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.2),
@@ -114,6 +118,6 @@ input[type="checkbox"] {
 /* MODAL */
 .modal-content {
   border: 2px solid #ffc107;
-  background: black;
+  background: rgba(0, 0, 0, 0.9);
   color: #ffc107;
 }
