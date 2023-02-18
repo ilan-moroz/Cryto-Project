@@ -1,8 +1,6 @@
-// FIRST API - CHANGED TO SHOW TOP 100 COINS
+// API - CHANGED TO SHOW TOP 100 COINS
 const cryptoCoins =
   'https://api.coingecko.com/api/v3/coins/?order=market_cap_desc&per_page=100'
-// SECOND API
-const cryptoInfo = 'https://api.coingecko.com/api/v3/coins/'
 
 // EMPTY ARRAY FOR THE DISPLAYED COINS AND LIVE REPORTS
 let displayCoins = []
@@ -91,47 +89,47 @@ const parallax = () => {
 }
 
 // FUNCTION fetchCoinsData GETS THE COINS DATA FROM THA API
-const fetchCoinsData = async (coinName, coinSymbol) => {
-  return new Promise((resolve, reject) => {
-    $.get({
-      url: cryptoInfo + coinName,
-      success: (data) => {
-        resolve(data)
-      },
-      error: () => {
-        $.get(cryptoInfo + coinSymbol, (data) => {
-          resolve(data)
-        }).catch((error) => {
-          reject('Sorry no information about this coin', error)
-        })
-      },
-    })
-  })
-}
+// const fetchCoinsData = async (coinName, coinSymbol) => {
+//   return new Promise((resolve, reject) => {
+//     $.get({
+//       url: cryptoInfo + coinName,
+//       success: (data) => {
+//         resolve(data)
+//       },
+//       error: () => {
+//         $.get(cryptoInfo + coinSymbol, (data) => {
+//           resolve(data)
+//         }).catch((error) => {
+//           reject('Sorry no information about this coin', error)
+//         })
+//       },
+//     })
+//   })
+// }
 
 // FUNCTION getCoinDetailsFromClick GET NAME,SYMBOL AND INDEX OF CLICKED COIN
-const getCoinDetailsFromClick = (event) => {
-  let coinIndex = $(event.target).closest('.card').index()
-  let coinSymbol = displayCoins[coinIndex].symbol.toLowerCase()
-  let coinName = displayCoins[coinIndex].name.toLowerCase()
-  console.log(coinName)
-  coinData(coinName, coinSymbol, coinIndex)
-}
+// const getCoinDetailsFromClick = (event) => {
+//   // let coinSymbol = displayCoins[coinIndex].symbol.toLowerCase()
+//   // let coinName = displayCoins[coinIndex].name.toLowerCase()
+//   // console.log(coinName)
+//   coinData(coinIndex)
+// }
 
 // FUNCTION coinData GETS SPECIFIC COIN DATA FROM THE API AND APPEND TO COLLAPSE
-const coinData = async (coinName, coinSymbol, coinIndex) => {
-  let coinData = await fetchCoinsData(coinName, coinSymbol)
+const coinData = (event) => {
+  let coinIndex = $(event.target).closest('.card').index()
+  // let coinData = await fetchCoinsData(coinName, coinSymbol)
   let targetId = `coin-${coinIndex}-details`
   $(`#${targetId}`).html(`
-  <img class="collapseImg" src="${coinData.image.large}"/>
-  USD:<br/> 1 ${coinData.name} = ${Number(
-    coinData.market_data.current_price.usd,
+  <img class="collapseImg" src="${displayCoins[coinIndex].image.large}"/>
+  USD:<br/> 1 ${displayCoins[coinIndex].name} = ${Number(
+    displayCoins[coinIndex].market_data.current_price.usd,
   )}$<br/>
-  EURO:<br/>  1 ${coinData.name} = ${Number(
-    coinData.market_data.current_price.eur,
+  EURO:<br/>  1 ${displayCoins[coinIndex].name} = ${Number(
+    displayCoins[coinIndex].market_data.current_price.eur,
   )}€<br/>
-  ILS:<br/>  1 ${coinData.name} = ${Number(
-    coinData.market_data.current_price.ils,
+  ILS:<br/>  1 ${displayCoins[coinIndex].name} = ${Number(
+    displayCoins[coinIndex].market_data.current_price.ils,
   )}₪`)
 }
 
