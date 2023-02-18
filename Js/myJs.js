@@ -17,7 +17,9 @@ $(function () {
 
   // ON CLICK EVENT FOR SHOWING MORE INFO ABOUT THE COINS
   $('.coins').on('click', '.moreInfo', function (event) {
-    getCoinDetailsFromClick(event)
+    if ($(event.target).attr('aria-expanded') === 'true') {
+      getCoinDetailsFromClick(event)
+    }
   })
 
   // LOADING SPINNER
