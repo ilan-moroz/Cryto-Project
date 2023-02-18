@@ -141,7 +141,7 @@ const coinData = async (coinName, coinSymbol, coinIndex) => {
   )}₪`)
 }
 
-//
+//FUNCTION checkBoxCheck ADDING AND REMOVING CHECKED COINS TO liveReportsArr ARRAY
 const checkBoxCheck = (event) => {
   let checkBoxId = event.target.id
   let checkBoxIndex = checkBoxId.split('-')[1]
