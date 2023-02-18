@@ -63,7 +63,15 @@ header {
   box-shadow: 0 4px 10px rgb(255, 193, 7), 0 4px 10px rgb(255, 193, 7);
 }
 
+/* CARD BUTTON */
+.moreInfo {
+  width: 100%;
+}
 .moreInfo:hover {
+  color: #ffc107;
+  background: black;
+  box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.2),
+    0 3px 8px 0 rgba(255, 193, 7, 0.15);
 }
 
 /* LOADING SPINNER */
