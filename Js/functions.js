@@ -170,4 +170,17 @@ const checkBoxCheck = (event) => {
     let arrIndex = liveReportsArr.indexOf(displayCoins[checkBoxIndex])
     liveReportsArr.splice(arrIndex, 1)
   }
+  console.log(liveReportsArr)
+  checkBoxCont()
+}
+
+// FUNCTION checkBoxCont IF 5 O MORE CHECKBOX ARE SELECTED DISABLE ALL OTHERS
+const checkBoxCont = () => {
+  let howMuch = $('.form-check-input').filter(':checked').length
+  if (howMuch >= 5) {
+    $('.form-check-input').not(':checked').attr('disabled', true)
+  } else {
+    $('.form-check-input').not(':checked').attr('disabled', false)
+  }
+  console.log(howMuch)
 }
