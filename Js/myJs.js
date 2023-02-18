@@ -47,4 +47,9 @@ $(function () {
     .on('click', function () {
       $('.card').show()
     })
+
+  // ONCLICK EVENT FOR CHECKBOX
+  $('.coins').on('click', 'input[type="checkbox"]', function (event) {
+    checkBoxCheck(event)
+  })
 })

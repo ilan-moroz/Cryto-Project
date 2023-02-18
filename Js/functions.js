@@ -37,12 +37,13 @@ const getCoinsDisplay = async () => {
 // FUNCTION displayCoin FOR APPENDING THE COINS WITH BOOTSTRAP CARD
 const displayCoin = (coin, index) => {
   let targetId = `coin-${index}-details`
+  let checkBoxId = `checkbox-${index}`
   $('.coins').append(`
     <div class="card border-warning text-warning bg-transparent ">
       <div class="card-header border-warning d-flex justify-content-between">
         ${coin.symbol}
         <div class="form-check form-switch d-inline-block m-1 p-0">
-          <input class="form-check-input" type="checkbox"/>
+          <input class="form-check-input" id ="${checkBoxId}"type="checkbox"/>
         </div>
       </div>
       <div class="card-body">
@@ -138,4 +139,35 @@ const coinData = async (coinName, coinSymbol, coinIndex) => {
   ILS:<br/>  1 ${coinData.name} = ${Number(
     coinData.market_data.current_price.ils,
   )}₪`)
+}
+
+//
+const checkBoxCheck = (event) => {
+  let checkBoxId = event.target.id
+  let checkBoxIndex = checkBoxId.split('-')[1]
+  if ($('#' + checkBoxId).is(':checked')) {
+    if (liveReportsArr.length < 5) {
+      liveReportsArr.push(displayCoins[checkBoxIndex])
+    } else {
+      console.log('max 5')
+      $('body').append(`<div class="modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalVerticallyCenteredLabel">Modal title</h5>
+            <button type="button" class="btn-close" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">...</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>`)
+    }
+  } else {
+    let arrIndex = liveReportsArr.indexOf(displayCoins[checkBoxIndex])
+    liveReportsArr.splice(arrIndex, 1)
+  }
 }
