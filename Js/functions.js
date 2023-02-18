@@ -1,5 +1,7 @@
-// APIS
-const cryptoCoins = 'https://api.coingecko.com/api/v3/coins/list'
+// FIRST API - CHANGED TO SHOW TOP 100 COINS
+const cryptoCoins =
+  'https://api.coingecko.com/api/v3/coins/?order=market_cap_desc&per_page=100'
+// SECOND API
 const cryptoInfo = 'https://api.coingecko.com/api/v3/coins/'
 
 // EMPTY ARRAY FOR THE DISPLAYED COINS AND LIVE REPORTS
@@ -26,8 +28,7 @@ const getCoinsDisplay = async () => {
   $('#spinner').show()
   const data = await fetchCoins()
   for (let i = 0; i < 100; i++) {
-    let random = Math.floor(Math.random() * data.length) + 1
-    displayCoins.push(data[random])
+    displayCoins.push(data[i])
     displayCoin(displayCoins[i], i)
   }
   $('#spinner').hide()
