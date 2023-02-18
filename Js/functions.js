@@ -162,11 +162,11 @@ const checkBoxCont = () => {
   if (howMuch >= 5) {
     $('.form-check-input').not(':checked').attr('disabled', true)
     $('.modal-body').html(`
-    1 Coin : ${liveReportsArr[0].name}</br>
-    2 Coin : ${liveReportsArr[1].name}</br>
-    3 Coin : ${liveReportsArr[2].name}</br>
-    4 Coin : ${liveReportsArr[3].name}</br>
-    5 Coin : ${liveReportsArr[4].name}
+    First Coin : ${liveReportsArr[0].name}</br>
+    Second Coin : ${liveReportsArr[1].name}</br>
+    Third Coin : ${liveReportsArr[2].name}</br>
+    Fourth Coin : ${liveReportsArr[3].name}</br>
+    Fifth Coin : ${liveReportsArr[4].name}
     `)
     $('#coinsModal').modal('show')
   } else {
@@ -180,7 +180,7 @@ const modalCollapse = () => {
     const option = $('<option>')
       .val(liveReportsArr[i].name)
       .text(liveReportsArr[i].name)
-    $('.replaceCoin').append(option)
+    $('.replaceCoin').html(option)
   }
   for (let i = 0; i < displayCoins.length; i++) {
     const option = $('<option>')

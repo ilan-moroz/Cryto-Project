@@ -117,3 +117,10 @@ input[type="checkbox"] {
   background: rgba(0, 0, 0, 0.9);
   color: #ffc107;
 }
+
+/* MODAL COLLAPSE */
+.approveChange {
+  margin: auto;
+  margin-top: 1rem;
+  width: 2.5rem;
+}
