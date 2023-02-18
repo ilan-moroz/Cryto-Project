@@ -18,7 +18,7 @@ $(function () {
   // ON CLICK EVENT FOR SHOWING MORE INFO ABOUT THE COINS
   $('.coins').on('click', '.moreInfo', function (event) {
     if ($(event.target).attr('aria-expanded') === 'true') {
-      coinData(event)
+      getCoinDetailsFromClick(event)
     }
   })
 
