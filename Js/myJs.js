@@ -52,4 +52,9 @@ $(function () {
   $('.coins').on('click', 'input[type="checkbox"]', function (event) {
     checkBoxCheck(event)
   })
+
+  // ONCLICK EVENT FOR COLLAPSE IN MODAL
+  $('#changeCoin').on('click', function () {
+    modalCollapse()
+  })
 })

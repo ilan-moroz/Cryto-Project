@@ -153,7 +153,6 @@ const checkBoxCheck = (event) => {
     let arrIndex = liveReportsArr.indexOf(displayCoins[checkBoxIndex])
     liveReportsArr.splice(arrIndex, 1)
   }
-  console.log(liveReportsArr)
   checkBoxCont()
 }
 
@@ -173,5 +172,21 @@ const checkBoxCont = () => {
   } else {
     $('.form-check-input').not(':checked').attr('disabled', false)
   }
-  console.log(howMuch)
+}
+
+// FUNCTION modalCollapse ADDING OPTION TO CHANGE COINS IN MODAL
+const modalCollapse = () => {
+  $('.coin1').html(`${liveReportsArr[0].name}`)
+  $('.coin2').html(`${liveReportsArr[1].name}`)
+  $('.coin3').html(`${liveReportsArr[2].name}`)
+  $('.coin4').html(`${liveReportsArr[3].name}`)
+  $('.coin5').html(`${liveReportsArr[4].name}`)
+
+  const select = document.querySelector('.replaceCoin')
+  for (let i = 0; i < displayCoins.length; i++) {
+    const option = document.createElement('option')
+    option.value = displayCoins[i].name
+    option.textContent = displayCoins[i].name
+    select.appendChild(option)
+  }
 }
