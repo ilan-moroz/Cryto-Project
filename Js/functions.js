@@ -105,3 +105,36 @@ async function fetchCoinsData(coinName, coinSymbol) {
     })
   })
 }
+
+// FUNCTION getCoinDetailsFromClick GET NAME,SYMBOL AND INDEX OF CLICKED COIN
+function getCoinDetailsFromClick(event) {
+  let coinIndex = $(event.target).closest('.card').index()
+  let coinSymbol = displayCoins[coinIndex].symbol.toLowerCase()
+  let coinName = displayCoins[coinIndex].name
+    .toLowerCase()
+    .split(' ')
+    .join('-')
+    .split('.')
+    .join('-')
+    .split('[')[0]
+    .split('(')[0]
+  console.log(coinName)
+  coinData(coinName, coinSymbol, coinIndex)
+}
+
+// FUNCTION coinData GETS SPECIFIC COIN DATA FROM THE API AND APPEND TO COLLAPSE
+async function coinData(coinName, coinSymbol, coinIndex) {
+  let coinData = await fetchCoinsData(coinName, coinSymbol)
+  let targetId = `coin-${coinIndex}-details`
+  $(`#${targetId}`).html(`
+  <img class="collapseImg" src="${coinData.image.large}"/>
+  USD:<br/> 1 ${coinData.name} = ${Number(
+    coinData.market_data.current_price.usd,
+  )}$<br/>
+  EURO:<br/>  1 ${coinData.name} = ${Number(
+    coinData.market_data.current_price.eur,
+  )}€<br/>
+  ILS:<br/>  1 ${coinData.name} = ${Number(
+    coinData.market_data.current_price.ils,
+  )}₪`)
+}
