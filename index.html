@@ -113,46 +113,48 @@
             ></button>
           </div>
           <div class="modal-body"></div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-              id="closeModal"
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              class="btn btn-warning"
-              id="changeCoin"
-              data-bs-toggle="collapse"
-              data-bs-target="#coinsCollapse"
-              aria-expanded="false"
-              aria-controls="coinsCollapse"
-            >
-              Change Coin
-            </button>
-            <!-- COLLAPSE FOR CHANGE COIN -->
-            <div class="collapse collapseCoin" id="coinsCollapse">
-              Which Coin To Replace:
-              <select
-                class="form-select replaceCoin"
-                aria-label="Default select example"
+          <div class="modal-footer flex-column text-center">
+            <div class="order-1">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                id="closeModal"
               >
-                <option selected disabled>
-                  Select Which Coin To Replace
-                </option></select
-              ><br />
-              Replace The Coin With:
-              <select
-                class="form-select replaceCoinWith"
-                aria-label="Default select example"
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-warning"
+                id="changeCoin"
+                data-bs-toggle="collapse"
+                data-bs-target="#coinsCollapse"
+                aria-expanded="false"
+                aria-controls="coinsCollapse"
               >
-                <option selected disabled>
-                  Select coin To Replace The Coin With:
-                </option>
-              </select>
+                Change Coin
+              </button>
+              <!-- COLLAPSE FOR CHANGE COIN -->
+              <div class="collapse collapseCoin" id="coinsCollapse">
+                Which Coin To Replace:
+                <select
+                  class="form-select replaceCoin"
+                  aria-label="Default select example"
+                >
+                  <option selected disabled>
+                    Select Which Coin To Replace
+                  </option></select
+                ><br />
+                Replace The Coin With:
+                <select
+                  class="form-select replaceCoinWith"
+                  aria-label="Default select example"
+                >
+                  <option selected disabled>
+                    Select coin To Replace The Coin With:
+                  </option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
