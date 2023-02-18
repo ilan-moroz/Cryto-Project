@@ -8,7 +8,7 @@ let displayCoins = []
 // FUNCTION fetchCoins GETS THE COINS FROM THA API
 async function fetchCoins() {
   return new Promise((resolve, reject) => {
-    $.ajax({
+    $.get({
       url: cryptoCoins,
       success: (data) => {
         resolve(data)
@@ -90,7 +90,7 @@ function parallax() {
 // FUNCTION fetchCoinsData GETS THE COINS DATA FROM THA API
 async function fetchCoinsData(coinName, coinSymbol) {
   return new Promise((resolve, reject) => {
-    $.ajax({
+    $.get({
       url: cryptoInfo + coinName,
       success: (data) => {
         resolve(data)
