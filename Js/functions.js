@@ -99,7 +99,7 @@ const fetchCoinsData = async (coinId) => {
         resolve(data)
       },
       error: (error) => {
-        reject(error)
+        reject('Error while fetching details about the coin', error)
       },
     })
   })
@@ -120,13 +120,13 @@ const coinData = async (coinId, coinIndex) => {
   <img class="collapseImg" src="${coinData.image.large}"/>
   USD:<br/> 1 ${coinData.name} = ${Number(
     coinData.market_data.current_price.usd,
-  )}$<br/>
+  )} $<br/>
   EURO:<br/>  1 ${coinData.name} = ${Number(
     coinData.market_data.current_price.eur,
   )}€<br/>
   ILS:<br/>  1 ${coinData.name} = ${Number(
     coinData.market_data.current_price.ils,
-  )}₪`)
+  )} ₪`)
 }
 
 //FUNCTION checkBoxCheck ADDING AND REMOVING CHECKED COINS TO liveReportsArr ARRAY

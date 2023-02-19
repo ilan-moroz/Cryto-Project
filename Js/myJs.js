@@ -1,7 +1,7 @@
 $(function () {
   // RUN FUNCTION getCoinsDisplay ON PAGE LOAD
   getCoinsDisplay().catch((error) => {
-    console.error('Error while fetching and displaying coins:', error)
+    console.error('Error while fetching and displaying coins', error)
   })
 
   // RUN FUNCTION parallax ON PAGE LOAD
