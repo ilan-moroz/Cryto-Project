@@ -1,6 +1,6 @@
 // API - CHANGED TO SHOW TOP 100 COINS
 const cryptoCoins =
-  'https://api.coingecko.com/api/v3/coins/?order=market_cap_desc&per_page=100'
+  'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&sparkline=false'
 // SECOND API
 const cryptoInfo = 'https://api.coingecko.com/api/v3/coins/'
 
@@ -91,7 +91,7 @@ const parallax = () => {
 }
 
 // FUNCTION fetchCoinsData GETS THE COINS DATA FROM THA API
-const fetchCoinsData = async (coinName, coinSymbol) => {
+const fetchCoinsData = async (coinName, coinSymbol, coinId) => {
   return new Promise((resolve, reject) => {
     $.get({
       url: cryptoInfo + coinName,
@@ -99,11 +99,19 @@ const fetchCoinsData = async (coinName, coinSymbol) => {
         resolve(data)
       },
       error: () => {
-        $.get(cryptoInfo + coinSymbol, (data) => {
-          resolve(data)
-        }).catch((error) => {
-          reject('Sorry no information about this coin', error)
-        })
+        $.get(cryptoInfo + coinSymbol)
+          .then((data) => {
+            resolve(data)
+          })
+          .catch(() => {
+            $.get(cryptoInfo + coinId)
+              .then((data) => {
+                resolve(data)
+              })
+              .catch((error) => {
+                reject('Sorry, no information about this coin', error)
+              })
+          })
       },
     })
   })
@@ -114,13 +122,14 @@ const getCoinDetailsFromClick = (event) => {
   let coinIndex = $(event.target).closest('.card').index()
   let coinSymbol = displayCoins[coinIndex].symbol.toLowerCase()
   let coinName = displayCoins[coinIndex].name.toLowerCase()
+  let coinId = displayCoins[coinIndex].id.toLowerCase()
   console.log(coinName)
-  coinData(coinName, coinSymbol, coinIndex)
+  coinData(coinName, coinSymbol, coinId, coinIndex)
 }
 
 // FUNCTION coinData GETS SPECIFIC COIN DATA FROM THE API AND APPEND TO COLLAPSE
-const coinData = async (coinName, coinSymbol, coinIndex) => {
-  let coinData = await fetchCoinsData(coinName, coinSymbol)
+const coinData = async (coinName, coinSymbol, coinId, coinIndex) => {
+  let coinData = await fetchCoinsData(coinName, coinSymbol, coinId)
   let targetId = `coin-${coinIndex}-details`
   $(`#${targetId}`).html(`
   <img class="collapseImg" src="${coinData.image.large}"/>
