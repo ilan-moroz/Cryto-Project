@@ -23,22 +23,27 @@ const fetchCoins = async () => {
   })
 }
 
-// FUNCTION getCoinsDisplay GETS 100 RANDOM COINS FROM DATA AND RUNS displayCoin ON EACH COIN
+// FUNCTION getCoinsDisplay GETS 100 COINS FROM DATA AND RUNS displayCoin ON EACH COIN
 const getCoinsDisplay = async () => {
+  // SHOW SPINNER ON START
   $('#spinner').show()
   const data = await fetchCoins()
   for (let i = 0; i < 100; i++) {
     displayCoins.push(data[i])
     displayCoin(displayCoins[i], i)
   }
+  // HIDE SPINNER WHEN FINISH
   $('#spinner').hide()
   return displayCoins
 }
 
 // FUNCTION displayCoin FOR APPENDING THE COINS WITH BOOTSTRAP CARD
 const displayCoin = (coin, index) => {
+  // MAKE DIFFERENT ID FOR EACH COLLAPSE
   let targetId = `coin-${index}-details`
+  // MAKE DIFFERENT ID FOR EACH CHECKBOX
   let checkBoxId = `checkbox-${index}`
+  // APPEND THE CARD THE COINS DIV
   $('.coins').append(`
     <div class="card border-warning text-warning bg-transparent ">
       <div class="card-header border-warning d-flex justify-content-between">
@@ -62,13 +67,17 @@ const displayCoin = (coin, index) => {
 
 // FUNCTION filterCoins FOR DISPLAYING THE COINS USER SEARCHES
 const filterCoins = () => {
+  // THE COINS THE USER SEARCHES
   let searchTerm = $('.search').val().toLowerCase()
+  // IF EMPTY SEARCH SHOW ALL COINS
   if (!searchTerm) {
     $('.card').show()
     return
   }
   for (let index = 0; index < displayCoins.length; index++) {
+    // FIND THE COIN SPECIFIC INDEX
     let card = $(`.card:eq(${index})`)
+    // SHOW ALL COINS THAT EQUAL THE SEARCH VALUE
     if (
       displayCoins[index].name.toLowerCase() !== searchTerm &&
       displayCoins[index].symbol.toLowerCase() !== searchTerm
@@ -105,7 +114,7 @@ const fetchCoinsData = async (coinId) => {
   })
 }
 
-// FUNCTION getCoinDetailsFromClick GET NAME,SYMBOL AND INDEX OF CLICKED COIN
+// FUNCTION getCoinDetailsFromClick GET ID AND INDEX OF CLICKED COIN
 const getCoinDetailsFromClick = (event) => {
   let coinIndex = $(event.target).closest('.card').index()
   let coinId = displayCoins[coinIndex].id.toLowerCase()
