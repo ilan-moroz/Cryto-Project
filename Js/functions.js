@@ -176,7 +176,7 @@ const modalCollapse = () => {
       .text(liveReportsArr[i].name)
     $('.replaceCoin').append(option)
   }
-  // IF replaceCoinWith HAVE ONLY 1 OPTION LOOP THROW displayCoins ARRAY AND APPEND TO SELECT
+  // IF replaceCoinWith HAVE ONLY 1 OPTION LOOP displayCoins ARRAY AND APPEND TO SELECT
   if ($('.replaceCoinWith option').length === 1) {
     for (let i = 0; i < displayCoins.length; i++) {
       const option = $('<option>')
@@ -186,8 +186,10 @@ const modalCollapse = () => {
     }
   }
 }
-
+// FUNCTION changeCoin FOR CHANGING THE COINS
 const changeCoin = () => {
-  $('.coinsCollapse').hide()
-  console.log('FUCKAc;')
+  // CLOSE THE COLLAPSE
+  $('#coinsCollapse').collapse('hide')
+  // CLOSE THE MODAL
+  $('#coinsModal').modal('hide')
 }
