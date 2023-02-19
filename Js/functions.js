@@ -186,3 +186,8 @@ const modalCollapse = () => {
     }
   }
 }
+
+const changeCoin = () => {
+  $('.coinsCollapse').hide()
+  console.log('FUCKAc;')
+}

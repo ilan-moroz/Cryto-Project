@@ -57,4 +57,8 @@ $(function () {
   $('#changeCoin').on('click', function () {
     modalCollapse()
   })
+
+  $('.approveChange').on('click', function () {
+    changeCoin()
+  })
 })
