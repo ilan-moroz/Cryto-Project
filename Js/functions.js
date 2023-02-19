@@ -91,27 +91,15 @@ const parallax = () => {
 }
 
 // FUNCTION fetchCoinsData GETS THE COINS DATA FROM THA API
-const fetchCoinsData = async (coinName, coinSymbol, coinId) => {
+const fetchCoinsData = async (coinId) => {
   return new Promise((resolve, reject) => {
     $.get({
-      url: cryptoInfo + coinName,
+      url: cryptoInfo + coinId,
       success: (data) => {
         resolve(data)
       },
-      error: () => {
-        $.get(cryptoInfo + coinSymbol)
-          .then((data) => {
-            resolve(data)
-          })
-          .catch(() => {
-            $.get(cryptoInfo + coinId)
-              .then((data) => {
-                resolve(data)
-              })
-              .catch((error) => {
-                reject('Sorry, no information about this coin', error)
-              })
-          })
+      error: (error) => {
+        reject(error)
       },
     })
   })
@@ -120,16 +108,13 @@ const fetchCoinsData = async (coinName, coinSymbol, coinId) => {
 // FUNCTION getCoinDetailsFromClick GET NAME,SYMBOL AND INDEX OF CLICKED COIN
 const getCoinDetailsFromClick = (event) => {
   let coinIndex = $(event.target).closest('.card').index()
-  let coinSymbol = displayCoins[coinIndex].symbol.toLowerCase()
-  let coinName = displayCoins[coinIndex].name.toLowerCase()
   let coinId = displayCoins[coinIndex].id.toLowerCase()
-  console.log(coinName)
-  coinData(coinName, coinSymbol, coinId, coinIndex)
+  coinData(coinId, coinIndex)
 }
 
 // FUNCTION coinData GETS SPECIFIC COIN DATA FROM THE API AND APPEND TO COLLAPSE
-const coinData = async (coinName, coinSymbol, coinId, coinIndex) => {
-  let coinData = await fetchCoinsData(coinName, coinSymbol, coinId)
+const coinData = async (coinId, coinIndex) => {
+  let coinData = await fetchCoinsData(coinId)
   let targetId = `coin-${coinIndex}-details`
   $(`#${targetId}`).html(`
   <img class="collapseImg" src="${coinData.image.large}"/>
