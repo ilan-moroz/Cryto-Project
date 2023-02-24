@@ -25,15 +25,11 @@ const fetchCoins = async () => {
 
 // FUNCTION getCoinsDisplay GETS 100 COINS FROM DATA AND RUNS displayCoin ON EACH COIN
 const getCoinsDisplay = async () => {
-  // SHOW SPINNER ON START
-  $('#spinner').show()
   const data = await fetchCoins()
   for (let i = 0; i < 100; i++) {
     displayCoins.push(data[i])
     displayCoin(displayCoins[i], i)
   }
-  // HIDE SPINNER WHEN FINISH
-  $('#spinner').hide()
   return displayCoins
 }
 
