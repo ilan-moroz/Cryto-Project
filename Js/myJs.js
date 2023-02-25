@@ -63,6 +63,11 @@ $(function () {
     changeCoin()
   })
 
+  // ONCLICK EVENT FOT MODAL CLOSE BUTTON WHEN USER WANT TO CANCEL COIN CHANGE
+  $('#closeModal').on('click', function () {
+    modalCancel()
+  })
+
   // Add the "active" class to the current nav item
   $('.nav-link').each(function () {
     var url = window.location.href

@@ -225,3 +225,13 @@ const changeCoin = () => {
     }
   }
 }
+
+// FUNCTION modalCancel IF USER WANT TO CLOSE THE MODAL AND CANCEL COIN CHANGE
+const modalCancel = () => {
+  // CLOSE THE COLLAPSE
+  $('#coinsCollapse').collapse('hide')
+  // remove the coin from liveReportsArr
+  liveReportsArr.splice(liveReportsArr.length - 1, 1)
+  // Find the last checked checkbox element and uncheck it
+  $('.form-check-input:checked').last().prop('checked', false)
+}
