@@ -224,5 +224,4 @@ const changeCoin = () => {
       break
     }
   }
-  console.log(liveReportsArr)
 }
