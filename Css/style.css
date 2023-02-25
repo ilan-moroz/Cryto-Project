@@ -124,3 +124,10 @@ input[type="checkbox"] {
   margin-top: 1rem;
   width: 2.5rem;
 }
+
+/* NAVBAR ACTIVE  */
+.nav-link.active {
+  background-color: #ffc107;
+  color: black !important;
+  border-radius: 15%;
+}

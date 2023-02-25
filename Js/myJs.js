@@ -61,4 +61,19 @@ $(function () {
   $('.approveChange').on('click', function () {
     changeCoin()
   })
+
+  // Add the "active" class to the corresponding nav item
+  $('.nav-link').each(function () {
+    var url = window.location.href
+    if ($(this).attr('href') == url) {
+      $(this).addClass('active')
+    }
+  })
+  // Remove the "active" class from other nav items
+  $('.nav-link').not('.active').removeClass('active')
+  // Update the "active" class when the user clicks a nav item
+  $('.nav-link').click(function () {
+    $('.nav-link').removeClass('active')
+    $(this).addClass('active')
+  })
 })
