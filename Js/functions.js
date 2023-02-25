@@ -45,7 +45,7 @@ const displayCoin = (coin, index) => {
       <div class="card-header border-warning d-flex justify-content-between">
         ${coin.symbol}
         <div class="form-check form-switch d-inline-block m-1 p-0">
-          <input class="form-check-input" id ="${checkBoxId}" type="checkbox"/>
+          <input class="form-check-input checkbox-${coin.name}" id ="${checkBoxId}" type="checkbox"/>
         </div>
       </div>
       <div class="card-body">
@@ -214,7 +214,9 @@ const changeCoin = () => {
   $('#coinsCollapse').collapse('hide')
   // CLOSE THE MODAL
   $('#coinsModal').modal('hide')
-
+  let checkBoxClass = '.checkbox-' + $('.replaceCoin').val()
+  // Find all checkboxes with the specified class and uncheck them
+  $(checkBoxClass + ':checkbox').prop('checked', false)
   // REMOVE FROM ARRAY THE SELECTED COIN TO REMOVE
   for (let coin of liveReportsArr) {
     if (coin.name === $('.replaceCoin').val()) {
