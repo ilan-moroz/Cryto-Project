@@ -165,7 +165,7 @@ const checkBoxCheck = (event) => {
   checkBoxCont()
 }
 
-// FUNCTION checkBoxCont DISABLE ALL UNSELECTED COINS AND INJECT TO MODAL
+// FUNCTION checkBoxCont ADD ALL SELECTED COINS TO ARRAY AND INJECT TO MODAL(SHOW MODAL AFTER 6 COINS SELECTED)
 const checkBoxCont = () => {
   let howMuch = $('.form-check-input').filter(':checked').length
   if (howMuch >= 6) {
@@ -191,8 +191,6 @@ const checkBoxCont = () => {
   </div>
     `)
     $('#coinsModal').modal('show')
-  } else {
-    $('.form-check-input').not(':checked').attr('disabled', false)
   }
 }
 
