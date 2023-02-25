@@ -169,7 +169,6 @@ const checkBoxCheck = (event) => {
 const checkBoxCont = () => {
   let howMuch = $('.form-check-input').filter(':checked').length
   if (howMuch >= 6) {
-    $('.form-check-input').not(':checked').attr('disabled', true)
     $('.modal-body').html(`
     <div class="row">
     <div class="col-6">
