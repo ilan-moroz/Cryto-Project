@@ -108,9 +108,14 @@ const fetchCoinsData = async (coinId) => {
     $.get({
       url: cryptoInfo + coinId,
       success: (data) => {
-        const response = new Response(JSON.stringify(data))
-        cache.put(cacheKey, response)
+        const response = new Response(JSON.stringify(data), {
+          headers: { 'Cache-Control': 'max-age=120' },
+        })
+        cache.put(cacheKey, response) // store the data in cache
         resolve(data)
+        setTimeout(() => {
+          cache.delete(cacheKey) // delete the cache after 2 mins
+        }, 120000)
       },
       error: (error) => {
         reject('Error while fetching details about the coin', error)
