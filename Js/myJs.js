@@ -62,7 +62,7 @@ $(function () {
     changeCoin()
   })
 
-  // Add the "active" class to the corresponding nav item
+  // Add the "active" class to the current nav item
   $('.nav-link').each(function () {
     var url = window.location.href
     if ($(this).attr('href') == url) {
