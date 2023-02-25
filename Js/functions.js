@@ -215,10 +215,6 @@ const changeCoin = () => {
   // CLOSE THE MODAL
   $('#coinsModal').modal('hide')
 
-  // $('.form-check-input[value="' + $('.replaceCoin').val() + '"]').prop(
-  //   'checked',
-  //   false,
-  // )
   // REMOVE FROM ARRAY THE SELECTED COIN TO REMOVE
   for (let coin of liveReportsArr) {
     if (coin.name === $('.replaceCoin').val()) {
