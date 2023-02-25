@@ -58,6 +58,7 @@ $(function () {
     modalCollapse()
   })
 
+  // ONCLICK EVENT FOR CHANGE COINS IN MODAL COLLAPSE
   $('.approveChange').on('click', function () {
     changeCoin()
   })
