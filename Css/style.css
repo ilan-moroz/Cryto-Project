@@ -129,5 +129,5 @@ input[type="checkbox"] {
 .nav-link.active {
   background-color: #ffc107;
   color: black !important;
-  border-radius: 15%;
+  border-radius: 10px;
 }
