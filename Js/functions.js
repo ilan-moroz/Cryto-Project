@@ -142,7 +142,7 @@ const coinData = async (coinId, coinIndex) => {
   )} $<br/>
   EURO:<br/>  1 ${coinData.name} = ${Number(
     coinData.market_data.current_price.eur,
-  )}€<br/>
+  )} €<br/>
   ILS:<br/>  1 ${coinData.name} = ${Number(
     coinData.market_data.current_price.ils,
   )} ₪`)
