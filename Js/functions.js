@@ -202,22 +202,12 @@ const modalCollapse = () => {
   $('.replaceCoin option:not(:first-child)').remove()
   //  MAKE FIRST OPTION SELECTED
   $('.replaceCoin').val($('.replaceCoin option:first').val())
-  $('.replaceCoinWith').val($('.replaceCoinWith option:first').val())
   // LOOP SELECTED COINS AND APPEND OPTIONS TO SELECT
-  for (let i = 0; i < liveReportsArr.length; i++) {
+  for (let i = 0; i < liveReportsArr.length - 1; i++) {
     const option = $('<option>')
       .val(liveReportsArr[i].name)
       .text(liveReportsArr[i].name)
     $('.replaceCoin').append(option)
-  }
-  // IF replaceCoinWith HAVE ONLY 1 OPTION LOOP displayCoins ARRAY AND APPEND TO SELECT
-  if ($('.replaceCoinWith option').length === 1) {
-    for (let i = 0; i < displayCoins.length; i++) {
-      const option = $('<option>')
-        .val(displayCoins[i].name)
-        .text(displayCoins[i].name)
-      $('.replaceCoinWith').append(option)
-    }
   }
 }
 // FUNCTION changeCoin FOR CHANGING THE COINS
