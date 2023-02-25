@@ -190,6 +190,7 @@ const checkBoxCont = () => {
   </div>
     `)
     $('#coinsModal').modal('show')
+    console.log(liveReportsArr)
   }
 }
 
@@ -207,10 +208,18 @@ const modalCollapse = () => {
     $('.replaceCoin').append(option)
   }
 }
-// FUNCTION changeCoin FOR CHANGING THE COINS
+
+// FUNCTION changeCoin FOR CHANGING THE COINS IN LIVE REPORT
 const changeCoin = () => {
   // CLOSE THE COLLAPSE
   $('#coinsCollapse').collapse('hide')
   // CLOSE THE MODAL
   $('#coinsModal').modal('hide')
+  // REMOVE FROM ARRAY THE SELECTED COIN TO REMOVE
+  for (let coin of liveReportsArr) {
+    if (coin.name === $('.replaceCoin').val()) {
+      liveReportsArr.splice(liveReportsArr.indexOf(coin), 1)
+    }
+  }
+  console.log(liveReportsArr)
 }
