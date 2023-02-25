@@ -215,7 +215,7 @@ const changeCoin = () => {
   // CLOSE THE MODAL
   $('#coinsModal').modal('hide')
   let checkBoxClass = '.checkbox-' + $('.replaceCoin').val()
-  // Find all checkboxes with the specified class and uncheck them
+  // Find checkbox with the specified class and uncheck
   $(checkBoxClass + ':checkbox').prop('checked', false)
   // REMOVE FROM ARRAY THE SELECTED COIN TO REMOVE
   for (let coin of liveReportsArr) {
