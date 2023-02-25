@@ -168,14 +168,27 @@ const checkBoxCheck = (event) => {
 // FUNCTION checkBoxCont DISABLE ALL UNSELECTED COINS AND INJECT TO MODAL
 const checkBoxCont = () => {
   let howMuch = $('.form-check-input').filter(':checked').length
-  if (howMuch >= 5) {
+  if (howMuch >= 6) {
     $('.form-check-input').not(':checked').attr('disabled', true)
     $('.modal-body').html(`
-    First Coin : ${liveReportsArr[0].name}</br>
-    Second Coin : ${liveReportsArr[1].name}</br>
-    Third Coin : ${liveReportsArr[2].name}</br>
-    Fourth Coin : ${liveReportsArr[3].name}</br>
-    Fifth Coin : ${liveReportsArr[4].name}
+    <div class="row">
+    <div class="col-6">
+      <h5>Live Report Coins</h5>
+      <ul>
+        <li>First Coin: ${liveReportsArr[0].name}</li>
+        <li>Second Coin: ${liveReportsArr[1].name}</li>
+        <li>Third Coin: ${liveReportsArr[2].name}</li>
+        <li>Fourth Coin: ${liveReportsArr[3].name}</li>
+        <li>Fifth Coin: ${liveReportsArr[4].name}</li>
+      </ul>
+    </div>
+    <div class="col-6">
+      <h5>The Extra Coin</h5>
+      <ul>
+      <li>Sixth Coin: ${liveReportsArr[5].name}</li>
+      </ul>
+    </div>
+  </div>
     `)
     $('#coinsModal').modal('show')
   } else {
