@@ -190,7 +190,6 @@ const checkBoxCont = () => {
   </div>
     `)
     $('#coinsModal').modal('show')
-    console.log(liveReportsArr)
   }
 }
 
@@ -215,10 +214,16 @@ const changeCoin = () => {
   $('#coinsCollapse').collapse('hide')
   // CLOSE THE MODAL
   $('#coinsModal').modal('hide')
+
+  // $('.form-check-input[value="' + $('.replaceCoin').val() + '"]').prop(
+  //   'checked',
+  //   false,
+  // )
   // REMOVE FROM ARRAY THE SELECTED COIN TO REMOVE
   for (let coin of liveReportsArr) {
     if (coin.name === $('.replaceCoin').val()) {
       liveReportsArr.splice(liveReportsArr.indexOf(coin), 1)
+      break
     }
   }
   console.log(liveReportsArr)
