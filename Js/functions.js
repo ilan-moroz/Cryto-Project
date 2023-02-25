@@ -95,15 +95,17 @@ const parallax = () => {
   })
 }
 
-// FUNCTION fetchCoinsData GETS THE COINS DATA FROM THA API AND SAVE IN CACHE FOR 2 MIN
+// FUNCTION fetchCoinsData GETS A SPECIFIC COIN DATA FROM THA API AND SAVE IN CACHE FOR 2 MIN
 const fetchCoinsData = async (coinId) => {
   const cacheKey = `coin_${coinId}`
   const cache = await caches.open('coinsCache')
   const cachedResponse = await cache.match(cacheKey)
+  // IF RESPONSE IS IN CACHE RESOLVE FROM CACHE AND NOT API
   if (cachedResponse) {
     const cachedData = await cachedResponse.json()
     return Promise.resolve(cachedData)
   }
+  // IF RESPONSE NOT IN CACHE RESOLVE FROM API AND SAVE TO CACHE
   return new Promise((resolve, reject) => {
     $.get({
       url: cryptoInfo + coinId,
@@ -111,10 +113,10 @@ const fetchCoinsData = async (coinId) => {
         const response = new Response(JSON.stringify(data), {
           headers: { 'Cache-Control': 'max-age=120' },
         })
-        cache.put(cacheKey, response) // store the data in cache
+        cache.put(cacheKey, response)
         resolve(data)
         setTimeout(() => {
-          cache.delete(cacheKey) // delete the cache after 2 mins
+          cache.delete(cacheKey) // DELETE CACHE AFTER 2 MIN
         }, 120000)
       },
       error: (error) => {
