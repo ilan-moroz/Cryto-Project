@@ -155,7 +155,7 @@ const checkBoxCheck = (event) => {
   let checkBoxId = event.target.id
   let checkBoxIndex = checkBoxId.split('-')[1]
   if ($('#' + checkBoxId).is(':checked')) {
-    if (liveReportsArr.length < 5) {
+    if (liveReportsArr.length < 6) {
       liveReportsArr.push(displayCoins[checkBoxIndex])
     }
   } else {
