@@ -95,12 +95,21 @@ const parallax = () => {
   })
 }
 
-// FUNCTION fetchCoinsData GETS THE COINS DATA FROM THA API
+// FUNCTION fetchCoinsData GETS THE COINS DATA FROM THA API AND SAVE IN CACHE FOR 2 MIN
 const fetchCoinsData = async (coinId) => {
+  const cacheKey = `coin_${coinId}`
+  const cache = await caches.open('coinsCache')
+  const cachedResponse = await cache.match(cacheKey)
+  if (cachedResponse) {
+    const cachedData = await cachedResponse.json()
+    return Promise.resolve(cachedData)
+  }
   return new Promise((resolve, reject) => {
     $.get({
       url: cryptoInfo + coinId,
       success: (data) => {
+        const response = new Response(JSON.stringify(data))
+        cache.put(cacheKey, response)
         resolve(data)
       },
       error: (error) => {
