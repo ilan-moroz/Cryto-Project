@@ -64,14 +64,18 @@
           <ul class="navbar-nav me-auto mb-2 mb-xl-0">
             <li class="nav-item active">
               <a
-                class="nav-link text-warning active"
+                class="nav-link text-warning active coinsNav"
                 aria-current="page"
                 href="#coins"
                 >Coins</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link text-warning" href="#">Live Report</a>
+              <a
+                class="nav-link text-warning liveReportNav"
+                href="#liveReportChart"
+                >Live Report</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link text-warning" href="#" tabindex="-1">About</a>
@@ -162,6 +166,9 @@
       </div>
     </div>
     <!-- LIVE REPORTS CHART -->
-    <div class="liveReport"></div>
+    <div id="liveReports">
+      <h1 class="liveReportChartHead">Live Reports</h1>
+      <div id="liveReportChart"></div>
+    </div>
   </body>
 </html>

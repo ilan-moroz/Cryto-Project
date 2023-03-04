@@ -235,3 +235,22 @@ const modalCancel = () => {
   // Find the last checked checkbox element and uncheck it
   $('.form-check-input:checked').last().prop('checked', false)
 }
+
+// CREATE CHART
+var options = {
+  title: {
+    text: 'My Chart',
+  },
+  data: [
+    {
+      type: 'line',
+      dataPoints: [
+        { x: 10, y: 20 },
+        { x: 20, y: 25 },
+        { x: 30, y: 30 },
+        { x: 40, y: 28 },
+        { x: 50, y: 35 },
+      ],
+    },
+  ],
+}

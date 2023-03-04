@@ -131,3 +131,12 @@ input[type="checkbox"] {
   color: black !important;
   border-radius: 10px;
 }
+
+/* LIVE REPORTS */
+.liveReportChartHead {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+#liveReports {
+  height: 50rem;
+}

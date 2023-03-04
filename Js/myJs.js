@@ -41,12 +41,11 @@ $(function () {
     event.preventDefault()
   })
 
-  //SHOW ALL COINS ON NAVBAR COINS CLICK
-  $('ul li a')
-    .first()
-    .on('click', function () {
-      $('.card').show()
-    })
+  //SHOW ALL COINS ON NAVBAR COINS CLICK AND HIDE ALL OTHER DIV
+  $('.coinsNav').on('click', function () {
+    $('.card').show()
+    $('#liveReports').hide()
+  })
 
   // ONCLICK EVENT FOR CHECKBOX
   $('.coins').on('click', 'input[type="checkbox"]', function (event) {
@@ -81,5 +80,17 @@ $(function () {
   $('.nav-link').click(function () {
     $('.nav-link').removeClass('active')
     $(this).addClass('active')
+  })
+
+  // CREATE CANVAS CHART
+  $('#liveReportChart').CanvasJSChart(options)
+
+  // HIDE THE LIVE REPORTS ON DEFAULT
+  $('#liveReports').hide()
+
+  //
+  $('.liveReportNav').on('click', function () {
+    $('.card').hide()
+    $('#liveReports').show()
   })
 })
