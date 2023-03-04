@@ -22,6 +22,7 @@ This is a cryptocurrency project that retrieves 100 random coins from an API and
 ## Technologies
 - HTML
 - CSS
+- Bootstrap
 - JavaScript
 - jQuery
 - Chart.js
