@@ -245,7 +245,7 @@ const showSection = (section) => {
 // CREATE CHART
 var chart = {
   title: {
-    text: 'My Chart',
+    text: 'FUCK Charts',
     fontColor: '#ffc107',
   },
   backgroundColor: 'black',
