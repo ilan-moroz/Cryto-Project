@@ -41,13 +41,6 @@ $(function () {
     event.preventDefault()
   })
 
-  //SHOW ALL COINS ON NAVBAR COINS CLICK AND HIDE ALL OTHER DIV
-  $('.coinsNav').on('click', function () {
-    $('.card').show()
-    $('#liveReports').hide()
-    $('#about').hide()
-  })
-
   // ONCLICK EVENT FOR CHECKBOX
   $('.coins').on('click', 'input[type="checkbox"]', function (event) {
     checkBoxCheck(event)
@@ -90,17 +83,18 @@ $(function () {
   $('#liveReports').hide()
   $('#about').hide()
 
+  //SHOW ALL COINS ON NAVBAR COINS CLICK AND HIDE ALL OTHER DIV
+  $('.coinsNav').on('click', function () {
+    showSection('.card')
+  })
+
   //SHOW LIVE REPORTS AND HIDE ALL OTHER DIV
   $('.liveReportNav').on('click', function () {
-    $('.card').hide()
-    $('#about').hide()
-    $('#liveReports').show()
+    showSection('#liveReports')
   })
 
   //SHOW LIVE REPORTS AND HIDE ALL OTHER DIV
   $('.aboutNav').on('click', function () {
-    $('.card').hide()
-    $('#liveReports').hide()
-    $('#about').show()
+    showSection('#about')
   })
 })

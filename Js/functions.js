@@ -236,6 +236,12 @@ const modalCancel = () => {
   $('.form-check-input:checked').last().prop('checked', false)
 }
 
+// Function to show a specific section and hide all others
+const showSection = (section) => {
+  $('.card, #liveReports, #about').hide()
+  $(section).show()
+}
+
 // CREATE CHART
 var options = {
   title: {
