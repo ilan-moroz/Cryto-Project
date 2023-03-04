@@ -45,6 +45,7 @@ $(function () {
   $('.coinsNav').on('click', function () {
     $('.card').show()
     $('#liveReports').hide()
+    $('#about').hide()
   })
 
   // ONCLICK EVENT FOR CHECKBOX
@@ -85,12 +86,21 @@ $(function () {
   // CREATE CANVAS CHART
   $('#liveReportChart').CanvasJSChart(options)
 
-  // HIDE THE LIVE REPORTS ON DEFAULT
+  // HIDE THE LIVE REPORTS & ABOUT ON DEFAULT
   $('#liveReports').hide()
+  $('#about').hide()
 
-  //
+  //SHOW LIVE REPORTS AND HIDE ALL OTHER DIV
   $('.liveReportNav').on('click', function () {
     $('.card').hide()
+    $('#about').hide()
     $('#liveReports').show()
+  })
+
+  //SHOW LIVE REPORTS AND HIDE ALL OTHER DIV
+  $('.aboutNav').on('click', function () {
+    $('.card').hide()
+    $('#liveReports').hide()
+    $('#about').show()
   })
 })
