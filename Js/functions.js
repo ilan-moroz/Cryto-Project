@@ -243,20 +243,28 @@ const showSection = (section) => {
 }
 
 // CREATE CHART
-var options = {
+var chart = {
   title: {
     text: 'My Chart',
+    fontColor: '#ffc107',
   },
+  backgroundColor: 'black',
   data: [
     {
       type: 'line',
       dataPoints: [
-        { x: 10, y: 20 },
-        { x: 20, y: 25 },
-        { x: 30, y: 30 },
-        { x: 40, y: 28 },
-        { x: 50, y: 35 },
+        { x: 10, y: 20, color: 'blue', lineColor: 'blue' },
+        { x: 20, y: 25, color: 'green', lineColor: 'green' },
+        { x: 30, y: 30, color: 'red', lineColor: 'red' },
+        { x: 40, y: 28, color: 'orange', lineColor: 'orange' },
+        { x: 50, y: 35, color: 'purple', lineColor: 'purple' },
       ],
     },
   ],
+  axisY: {
+    labelFontColor: '#ffc107',
+  },
+  axisX: {
+    labelFontColor: '#ffc107',
+  },
 }

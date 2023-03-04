@@ -77,7 +77,7 @@ $(function () {
   })
 
   // CREATE CANVAS CHART
-  $('#liveReportChart').CanvasJSChart(options)
+  $('#liveReportChart').CanvasJSChart(chart)
 
   // HIDE THE LIVE REPORTS & ABOUT ON DEFAULT
   $('#liveReports').hide()
