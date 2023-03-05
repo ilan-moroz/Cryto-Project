@@ -162,6 +162,7 @@ const checkBoxCheck = (event) => {
     liveReportsArr.splice(arrIndex, 1)
   }
   checkBoxCont()
+  // add coins to live Reports chart
   getCoinsPriceChart()
 }
 
@@ -258,6 +259,7 @@ const getCoinsPriceChart = async () => {
     $.get({
       url: cryptoChart,
       success: (data) => {
+        console.log(data)
         resolve(data)
       },
       error: (error) => {
