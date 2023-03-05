@@ -231,8 +231,11 @@ const modalCancel = () => {
   // CLOSE THE COLLAPSE
   $('#coinsCollapse').collapse('hide')
   // Find the last checked checkbox element and uncheck it
-  let lastCoin = liveReportsArr[liveReportsArr.length - 1]
-  $(`.checkbox-${lastCoin.name}`).prop('checked', false)
+  let lastCoin = liveReportsArr[liveReportsArr.length - 1].name.replace(
+    / /g,
+    '.',
+  )
+  $(`.checkbox-${lastCoin}`).prop('checked', false)
   // remove the coin from liveReportsArr
   liveReportsArr.pop()
 }
