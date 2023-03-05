@@ -76,9 +76,6 @@ $(function () {
     $(this).addClass('active')
   })
 
-  // CREATE CANVAS CHART
-  $('#liveReportChart').CanvasJSChart(chart)
-
   // HIDE THE LIVE REPORTS & ABOUT ON DEFAULT
   $('#liveReports').hide()
   $('#about').hide()

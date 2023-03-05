@@ -259,7 +259,7 @@ const getCoinsPriceChart = async () => {
     $.get({
       url: cryptoChart,
       success: (data) => {
-        console.log(data)
+        // createChart(data)
         resolve(data)
       },
       error: (error) => {
@@ -270,28 +270,30 @@ const getCoinsPriceChart = async () => {
 }
 
 // CREATE CHART
-var chart = {
-  title: {
-    text: 'FUCK Charts',
-    fontColor: '#ffc107',
-  },
-  backgroundColor: 'black',
-  data: [
-    {
-      type: 'line',
-      dataPoints: [
-        { x: 10, y: 20, color: 'blue', lineColor: 'blue' },
-        { x: 20, y: 25, color: 'green', lineColor: 'green' },
-        { x: 30, y: 30, color: 'red', lineColor: 'red' },
-        { x: 40, y: 28, color: 'orange', lineColor: 'orange' },
-        { x: 50, y: 35, color: 'purple', lineColor: 'purple' },
-      ],
-    },
-  ],
-  axisY: {
-    labelFontColor: '#ffc107',
-  },
-  axisX: {
-    labelFontColor: '#ffc107',
-  },
-}
+// const createChart = async (data) => {
+//   var chart = {
+//     title: {
+//       text: 'Crypto Prices',
+//       fontColor: '#ffc107',
+//     },
+//     backgroundColor: 'black',
+//     data: [
+//       {
+//         type: 'line',
+//         dataPoints: [
+//           { x: 10, y: data.BTC.USD, color: 'blue', lineColor: 'blue' },
+//           { x: 20, y: data.BTC.ILS, color: 'green', lineColor: 'green' },
+//           { x: 30, y: data.BTC.EUR, color: 'red', lineColor: 'red' },
+//           // Add more data points for each coin
+//         ],
+//       },
+//     ],
+//     axisY: {
+//       labelFontColor: '#ffc107',
+//     },
+//     axisX: {
+//       labelFontColor: '#ffc107',
+//     },
+//   }
+//   $('#liveReportChart').CanvasJSChart(chart)
+// }
