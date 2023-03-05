@@ -230,10 +230,11 @@ const changeCoin = () => {
 const modalCancel = () => {
   // CLOSE THE COLLAPSE
   $('#coinsCollapse').collapse('hide')
+  // Find the last checked checkbox element and uncheck it
+  let lastCoin = liveReportsArr[liveReportsArr.length - 1]
+  $(`.checkbox-${lastCoin.name}`).prop('checked', false)
   // remove the coin from liveReportsArr
   liveReportsArr.pop()
-  // Find the last checked checkbox element and uncheck it
-  $('.form-check-input:checked').last().prop('checked', false)
 }
 
 // Function to show a specific section and hide all others
