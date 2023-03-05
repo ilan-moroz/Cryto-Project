@@ -1,14 +1,13 @@
-// API - CHANGED TO SHOW TOP 100 COINS
+// APIS - CHANGED TO SHOW TOP 100 COINS
 const cryptoCoins =
   'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&sparkline=false'
-// SECOND API
 const cryptoInfo = 'https://api.coingecko.com/api/v3/coins/'
 
 // EMPTY ARRAY FOR THE DISPLAYED COINS AND LIVE REPORTS
 let displayCoins = []
 let liveReportsArr = []
 
-// FUNCTION fetchCoins GETS THE COINS FROM THA API
+// FUNCTION fetchCoins GETS THE COINS FROM THE API
 const fetchCoins = async () => {
   return new Promise((resolve, reject) => {
     $.get({
@@ -163,6 +162,7 @@ const checkBoxCheck = (event) => {
     liveReportsArr.splice(arrIndex, 1)
   }
   checkBoxCont()
+  getCoinsPriceChart()
 }
 
 // FUNCTION checkBoxCont ADD ALL SELECTED COINS TO ARRAY AND INJECT TO MODAL(SHOW MODAL AFTER 6 COINS SELECTED)
@@ -244,6 +244,27 @@ const modalCancel = () => {
 const showSection = (section) => {
   $('.card, #liveReports, #about').hide()
   $(section).show()
+}
+
+// FUNCTION getCoinsPriceChart GETS THE COINS FROM THE API
+const getCoinsPriceChart = async () => {
+  // API
+  let cryptoChart = 'https://min-api.cryptocompare.com/data/pricemulti?fsyms='
+  // ADD SELECTED COIN TO API
+  const symbols = liveReportsArr.map((coin) => coin.symbol.toUpperCase())
+  cryptoChart += symbols.join(',')
+  cryptoChart += '&tsyms=USD,ILS,EUR'
+  return new Promise((resolve, reject) => {
+    $.get({
+      url: cryptoChart,
+      success: (data) => {
+        resolve(data)
+      },
+      error: (error) => {
+        reject(error)
+      },
+    })
+  })
 }
 
 // CREATE CHART
