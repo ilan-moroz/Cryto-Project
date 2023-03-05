@@ -247,7 +247,7 @@ const showSection = (section) => {
   $(section).show()
 }
 
-// FUNCTION getCoinsPriceChart GETS THE COINS FROM THE API
+// FUNCTION getCoinsPriceChart GETS THE COINS CURRENCIES FROM THE API FOR THE CHART
 const getCoinsPriceChart = async () => {
   // API
   let cryptoChart = 'https://min-api.cryptocompare.com/data/pricemulti?fsyms='
