@@ -99,10 +99,13 @@ $(function () {
   let start = 0
   if ($('#liveReports').is(':visible')) {
     start = Date.now()
+    getCoinsPriceChart(start)
   }
   setInterval(function () {
     if ($('#liveReports').is(':visible')) {
       getCoinsPriceChart(start)
+    } else {
+      dataPoints = [] // reset the dataPoints array
     }
   }, 2000)
 })
