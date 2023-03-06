@@ -95,7 +95,7 @@ $(function () {
     showSection('#about')
   })
 
-  // Call getCoinsPriceChart every 2 seconds to update the chart with USD prices if on live reports
+  // Call getCoinsPriceChart every 2 seconds to update the chart with USD prices if live reports is visible
   let start = 0
   if ($('#liveReports').is(':visible')) {
     start = Date.now()
