@@ -292,6 +292,11 @@ const createChart = async (data, start) => {
     })
   })
 
+  // Remove any symbols that are not present in liveReportsArr
+  dataPoints = dataPoints.filter((dp) =>
+    liveReportsArr.some((coin) => coin.symbol.toUpperCase() === dp.name),
+  )
+
   // Create the chart object with the data points array
   const chart = {
     title: {
@@ -308,5 +313,6 @@ const createChart = async (data, start) => {
     },
   }
 
+  // Update the chart
   $('#liveReportChart').CanvasJSChart(chart)
 }
