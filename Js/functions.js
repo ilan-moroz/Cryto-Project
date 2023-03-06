@@ -72,7 +72,7 @@ const filterCoins = () => {
   for (let index = 0; index < displayCoins.length; index++) {
     // FIND THE COIN SPECIFIC INDEX
     let card = $(`.card:eq(${index})`)
-    // SHOW ALL COINS THAT EQUAL THE SEARCH VALUE
+    // SHOW ALL COINS THAT EQUAL THE SEARCH VALUE ONLY SYMBOL
     if (displayCoins[index].symbol.toLowerCase() !== searchTerm) {
       card.hide()
     } else {
