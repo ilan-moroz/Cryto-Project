@@ -274,7 +274,6 @@ let dataPoints = [] // define an array to store the data points
 const createChart = async (data, start) => {
   let elapsedSeconds = (Date.now() - start) / 1000
   elapsedSeconds = new Date(elapsedSeconds * 1000).toLocaleTimeString()
-
   // Get an array of coin symbols from the data object
   const coinSymbols = Object.keys(data)
   // Create an array of data point objects for each coin
