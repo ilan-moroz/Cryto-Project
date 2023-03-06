@@ -162,8 +162,8 @@ const checkBoxCheck = (event) => {
     liveReportsArr.splice(arrIndex, 1)
   }
   checkBoxCont()
-  // add coins to live Reports chart
-  getCoinsPriceChart()
+  // // add coins to live Reports chart
+  // getCoinsPriceChart()
 }
 
 // FUNCTION checkBoxCont ADD ALL SELECTED COINS TO ARRAY AND INJECT TO MODAL(SHOW MODAL AFTER 6 COINS SELECTED)
@@ -254,12 +254,12 @@ const getCoinsPriceChart = async () => {
   // ADD SELECTED COIN TO API
   const symbols = liveReportsArr.map((coin) => coin.symbol.toUpperCase())
   cryptoChart += symbols.join(',')
-  cryptoChart += '&tsyms=USD,ILS,EUR'
+  cryptoChart += '&tsyms=USD'
   return new Promise((resolve, reject) => {
     $.get({
       url: cryptoChart,
       success: (data) => {
-        // createChart(data)
+        createChart(data)
         resolve(data)
       },
       error: (error) => {
@@ -268,32 +268,38 @@ const getCoinsPriceChart = async () => {
     })
   })
 }
+let start = Date.now()
 
 // CREATE CHART
-// const createChart = async (data) => {
-//   var chart = {
-//     title: {
-//       text: 'Crypto Prices',
-//       fontColor: '#ffc107',
-//     },
-//     backgroundColor: 'black',
-//     data: [
-//       {
-//         type: 'line',
-//         dataPoints: [
-//           { x: 10, y: data.BTC.USD, color: 'blue', lineColor: 'blue' },
-//           { x: 20, y: data.BTC.ILS, color: 'green', lineColor: 'green' },
-//           { x: 30, y: data.BTC.EUR, color: 'red', lineColor: 'red' },
-//           // Add more data points for each coin
-//         ],
-//       },
-//     ],
-//     axisY: {
-//       labelFontColor: '#ffc107',
-//     },
-//     axisX: {
-//       labelFontColor: '#ffc107',
-//     },
-//   }
-//   $('#liveReportChart').CanvasJSChart(chart)
-// }
+const createChart = async (data) => {
+  let elapsedSeconds = (Date.now() - start) / 1000
+  // Get an array of coin symbols from the data object
+  const coinSymbols = Object.keys(data)
+  // Create an array of data point objects for each coin
+  const dataPoints = coinSymbols.map((symbol) => {
+    const coinData = data[symbol]
+    return {
+      type: 'line',
+      name: symbol,
+      showInLegend: true,
+      dataPoints: [{ label: elapsedSeconds, y: coinData.USD }],
+    }
+  })
+  // Create the chart object with the data points array
+  const chart = {
+    title: {
+      text: 'Crypto Prices',
+      fontColor: '#ffc107',
+    },
+    backgroundColor: 'black',
+    data: dataPoints,
+    axisY: {
+      labelFontColor: '#ffc107',
+    },
+    axisX: {
+      labelFontColor: '#ffc107',
+    },
+  }
+
+  $('#liveReportChart').CanvasJSChart(chart)
+}

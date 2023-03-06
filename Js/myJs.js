@@ -94,4 +94,7 @@ $(function () {
   $('.aboutNav').on('click', function () {
     showSection('#about')
   })
+
+  // Call getCoinsPriceChart every 2 seconds to update the chart with USD prices
+  setInterval(getCoinsPriceChart, 2000)
 })
