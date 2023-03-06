@@ -248,7 +248,7 @@ const showSection = (section) => {
 }
 
 // FUNCTION getCoinsPriceChart GETS THE COINS CURRENCIES FROM THE API FOR THE CHART
-const getCoinsPriceChart = async () => {
+const getCoinsPriceChart = async (start) => {
   // API
   let cryptoChart = 'https://min-api.cryptocompare.com/data/pricemulti?fsyms='
   // ADD SELECTED COIN TO API
@@ -259,7 +259,7 @@ const getCoinsPriceChart = async () => {
     $.get({
       url: cryptoChart,
       success: (data) => {
-        createChart(data)
+        setTimeout(() => createChart(data, start), 1000)
         resolve(data)
       },
       error: (error) => {
@@ -268,27 +268,35 @@ const getCoinsPriceChart = async () => {
     })
   })
 }
-let start = Date.now()
+let dataPoints = [] // define an array to store the data points
 
 // CREATE CHART
-const createChart = async (data) => {
+const createChart = async (data, start) => {
   let elapsedSeconds = (Date.now() - start) / 1000
+  elapsedSeconds = new Date(elapsedSeconds * 1000).toLocaleTimeString()
+
   // Get an array of coin symbols from the data object
   const coinSymbols = Object.keys(data)
   // Create an array of data point objects for each coin
-  const dataPoints = coinSymbols.map((symbol) => {
+  coinSymbols.forEach((symbol) => {
     const coinData = data[symbol]
-    return {
+    const newDataPoint = { label: elapsedSeconds, y: coinData.USD }
+    const existingDataPoints =
+      dataPoints.find((dp) => dp.name === symbol)?.dataPoints || []
+    existingDataPoints.push(newDataPoint)
+    dataPoints = dataPoints.filter((dp) => dp.name !== symbol)
+    dataPoints.push({
       type: 'line',
       name: symbol,
       showInLegend: true,
-      dataPoints: [{ label: elapsedSeconds, y: coinData.USD }],
-    }
+      dataPoints: existingDataPoints,
+    })
   })
+
   // Create the chart object with the data points array
   const chart = {
     title: {
-      text: 'Crypto Prices',
+      text: 'Crypto Prices In USD',
       fontColor: '#ffc107',
     },
     backgroundColor: 'black',

@@ -95,6 +95,14 @@ $(function () {
     showSection('#about')
   })
 
-  // Call getCoinsPriceChart every 2 seconds to update the chart with USD prices
-  setInterval(getCoinsPriceChart, 2000)
+  // Call getCoinsPriceChart every 2 seconds to update the chart with USD prices if on live reports
+  let start = 0
+  if ($('#liveReports').is(':visible')) {
+    start = Date.now()
+  }
+  setInterval(function () {
+    if ($('#liveReports').is(':visible')) {
+      getCoinsPriceChart(start)
+    }
+  }, 2000)
 })
