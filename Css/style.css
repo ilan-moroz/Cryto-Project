@@ -157,7 +157,7 @@ input[type="checkbox"] {
 }
 
 /* layout for medium-sized screens */
-@media (min-width: 20000px) {
+@media (min-width: 768px) {
   #about {
     display: flex;
     flex-wrap: wrap;
